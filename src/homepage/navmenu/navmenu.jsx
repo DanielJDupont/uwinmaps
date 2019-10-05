@@ -45,7 +45,7 @@ function NavMenu() {
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="https://www.uwinmaps.com/">
-                  Action
+                  Action 1
                 </a>
                 <a class="dropdown-item" href="https://www.uwinmaps.com/">
                   Another action
