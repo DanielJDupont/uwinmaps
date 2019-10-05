@@ -41,7 +41,7 @@ function NavMenu() {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                Resources
+                Campus Resources
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="https://www.uwinmaps.com/">
