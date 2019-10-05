@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function NavMenu() {
   return (
@@ -28,7 +28,7 @@ function NavMenu() {
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://www.uwinmaps.com/">
-                Link
+                Events
               </a>
             </li>
             <li class="nav-item dropdown">
@@ -41,7 +41,7 @@ function NavMenu() {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                Dropdown
+                Resources
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="https://www.uwinmaps.com/">
@@ -63,7 +63,7 @@ function NavMenu() {
                 tabindex="-1"
                 aria-disabled="true"
               >
-                Disabled
+                ProSearch
               </a>
             </li>
           </ul>
