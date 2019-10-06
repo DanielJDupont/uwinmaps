@@ -1,6 +1,12 @@
-## UWinMaps
+## UWinMaps https://www.uwinmaps.com/
+
+Slack Channel: 311finalproject
 
 An indoor navigation system that uses photos to guide users to their destination.
+
+Deployment:
+- Deployed to AWS using Amplify and domain name obtained with AWS Route 53.
+- Redeployed upon every change to the GitHub Master Branch.
 
 Package Manager:
 - Use npm, not yarn:
@@ -25,7 +31,7 @@ Some features include:
 
 --------------------------------------------------
 ## Below is the Default ReadMe
-
+--------------------------------------------------
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
