@@ -1,7 +1,7 @@
 import React from "react";
 
 // Components, which are the web pages in this case.
-import HomePage from "./homepage/homepage";
+import Home from "./home/home";
 import AboutUs from "./aboutus/aboutus";
 import Events from "./events/events";
 import Resources from "./resources/resources";
@@ -69,7 +69,7 @@ function NavMenu() {
           <Resources />
         </Route>
         <Route path="/">
-          <HomePage />
+          <Home />
         </Route>
       </Switch>
     </Router>
