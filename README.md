@@ -1,3 +1,32 @@
+## UWinMaps
+
+An indoor navigation system that uses photos to guide users to their destination.
+
+Package Manager:
+- Use npm, not yarn:
+  - Just an arbritary choice because we should not use both at the same time.
+  - Redux assumes that you are using npm.
+
+Technologies:
+- React https://reactjs.org/
+- React-Router https://reacttraining.com/react-router/web/guides/quick-start
+- Redux https://redux.js.org/
+- Firebase https://firebase.google.com
+
+
+Some features include:
+- Choice between Regular and Accessible Routes
+- Search Function For Rooms
+
+
+
+
+
+
+--------------------------------------------------
+## Below is the Default ReadMe
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
