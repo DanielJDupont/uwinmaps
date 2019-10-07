@@ -3,6 +3,17 @@ import React from "react";
 // Components
 import Room from "./room/room";
 
+/*
+Inputs
+props.list.map(element => (<Building {...element} />))
+
+Example of element:
+{
+  "buildingName": "Essex Hall",
+  "buildingCode": "EH",
+  "rooms": [186]
+}
+*/
 function Building(props) {
   let roomText = "Rooms";
   if (props.rooms.length === 1) {
