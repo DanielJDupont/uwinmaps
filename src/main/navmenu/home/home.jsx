@@ -3,8 +3,11 @@ import React from "react";
 // Components
 import MainCarousel from "./maincarousel/maincarousel";
 import InfoJumbotron from "./infojumbotron/infojumbotron";
-import BuildingAccordion from "./buildingaccordion/buildingaccordian";
+import Accordion from "./accordion/accordian";
 import RoomSearch from "./roomsearch/roomsearch";
+
+// JSON
+import buildingsAndRooms from "./buildingsandrooms.json";
 
 function HomePage() {
   return (
@@ -12,7 +15,7 @@ function HomePage() {
       <MainCarousel />
       <InfoJumbotron />
       <RoomSearch />
-      <BuildingAccordion />
+      <Accordion {...buildingsAndRooms} />
       <InfoJumbotron />
     </div>
   );

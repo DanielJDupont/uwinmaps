@@ -1,0 +1,67 @@
+{
+  "list": [
+    {
+      "buildingName": "Erie Hall",
+      "buildingCode": "ER",
+      "rooms": [
+        1114,
+        1115,
+        1118,
+        1120,
+        2123,
+        2125,
+        2126,
+        2127,
+        2130,
+        2137,
+        2139,
+        3123,
+        3127
+      ]
+    },
+    {
+      "buildingName": "Ed Lumley Centre for Engineering Innovation",
+      "buildingCode": "CE",
+      "rooms": [1100, 1101, 1102, 2100, 2101, 2102, 2104]
+    },
+    {
+      "buildingName": "Essex Hall",
+      "buildingCode": "EH",
+      "rooms": [186]
+    },
+    {
+      "buildingName": "Biology Building",
+      "buildingCode": "BB",
+      "rooms": [113, 121]
+    },
+    {
+      "buildingName": "Chrysler Hall North",
+      "buildingCode": "CN",
+      "rooms": [2173, "G100", "G125", "G129", "G133"]
+    },
+    {
+      "buildingName": "Chrysler Hall South",
+      "buildingCode": "CS",
+      "rooms": [254, 263, "265A", 278, 294, 51, 53, "53-1", "53-2"]
+    },
+    {
+      "buildingName": "Odette Building",
+      "buildingCode": "OB",
+      "rooms": [
+        104,
+        108,
+        110,
+        112,
+        209,
+        210,
+        212,
+        321,
+        507,
+        "B02",
+        "B03",
+        "B04",
+        "B06"
+      ]
+    }
+  ]
+}
