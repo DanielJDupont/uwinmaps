@@ -59,7 +59,7 @@ Closed source for now.
 
 --------------------------------------------------
 
-:rose: Built with :heart: at the University Of Windsor :rose:
+:rose::rose::rose: Built with :heart: at the University Of Windsor :rose::rose::rose:
 
 :v::v::v: Pull request and give good vibes :v::v::v:
 
