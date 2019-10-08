@@ -37,12 +37,14 @@ Some features include:
 - AWS: Route53, Amplify, S3
 - npm (see package.json for all used npm packages)
 
-**:copyright: License:**
-
-Proprietary / closed-source. To be shared only with technology recruiters.
-
 
 
 :tada::rose: Built with :heart: at the University Of Windsor :rose::confetti_ball:
 
 :v::v::v: Pull request and give good vibes. :v::v::v:
+
+**:copyright: License:**
+
+Closed source for now.
+
+
