@@ -41,6 +41,8 @@ Some features include:
 
 Proprietary / closed-source. To be shared only with technology recruiters.
 
-Built with :heart: at the University Of Windsor.
 
-:v::v::v: Code and give good vibes. :v::v::v:
+
+:tada::rose: Built with :heart: at the University Of Windsor :rose::confetti_ball:
+
+:v::v::v: Pull request and give good vibes. :v::v::v:
