@@ -59,7 +59,7 @@ class NavMenu extends React.Component {
               </li>
               <li class="nav-item">
                 <Link class="nav-link" to="/bookstore">
-                  Bookstore
+                  Shop
                   <span class="sr-only"></span>
                 </Link>
               </li>
