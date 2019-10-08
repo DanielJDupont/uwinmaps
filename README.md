@@ -29,7 +29,7 @@ An indoor navigation system that uses photos to guide users to their destination
 - React https://reactjs.org/
 - React-Router https://reacttraining.com/react-router/web/guides/quick-start
 - Redux https://redux.js.org/ (not used yet)
-- Firebase:Fire: https://firebase.google.com (not used yet)
+- Firebase:fire: https://firebase.google.com (not used yet)
 - AWS: Route53, Amplify, S3
 - npm (see package.json for all used npm packages)
 
