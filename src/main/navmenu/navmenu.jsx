@@ -5,6 +5,8 @@ import Home from "./home/home";
 import AboutUs from "./aboutus/aboutus";
 import Events from "./events/events";
 import Resources from "./resources/resources";
+import Register from "./register/register";
+import Login from "./login/login";
 
 // Router
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -54,6 +56,18 @@ function NavMenu() {
                 <span class="sr-only">(current)</span>
               </Link>
             </li>
+            <li class="nav-item">
+              <Link class="nav-link" to="/register">
+                Register
+                <span class="sr-only">(current)</span>
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Link class="nav-link" to="/login">
+                Login
+                <span class="sr-only">(current)</span>
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>
@@ -67,6 +81,12 @@ function NavMenu() {
         </Route>
         <Route path="/resources">
           <Resources />
+        </Route>
+        <Route path="/register">
+          <Register />
+        </Route>
+        <Route path="/login">
+          <Login />
         </Route>
         <Route path="/">
           <Home />
