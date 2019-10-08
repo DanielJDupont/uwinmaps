@@ -1,4 +1,24 @@
-## UWinMaps https://www.uwinmaps.com/
+## UWinMaps 
+
+**Check it out!**
+:point_right::point_right::point_right: https://www.uwinmaps.com :point_left::point_left::point_left:
+
+**Running Locally:**
+
+First, clone the repository!
+```
+
+cd uwinmaps
+```
+https://github.com/DanielJDupont/uwinmaps.git
+Then install all of the dependencies and get it running!
+```
+npm install
+npm start
+```
+
+:fire::fire::fire:**Enjoy!**:fire::fire::fire:
+
 
 Slack Channel: 311finalproject
 
