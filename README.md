@@ -38,7 +38,9 @@ Some features include:
 - Search Function For Rooms
 
 **License:**
+
 Proprietary / closed-source. To be shared only with technology recruiters.
 
 Built with :heart: at the University Of Windsor.
+
 :v::v::v: Code and give good vibes. :v::v::v:

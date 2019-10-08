@@ -76,6 +76,12 @@ class NavMenu extends React.Component {
                 </Link>
               </li>
               <li class="nav-item">
+                <Link class="nav-link" to="/aboutus">
+                  About Us
+                  <span class="sr-only"></span>
+                </Link>
+              </li>
+              <li class="nav-item">
                 <Link class="nav-link" to="/register">
                   Register
                   <span class="sr-only"></span>
@@ -84,12 +90,6 @@ class NavMenu extends React.Component {
               <li class="nav-item">
                 <Link class="nav-link" to="/login">
                   Login
-                  <span class="sr-only"></span>
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to="/aboutus">
-                  About Us
                   <span class="sr-only"></span>
                 </Link>
               </li>
