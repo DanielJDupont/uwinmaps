@@ -21,13 +21,29 @@ npm start
 --------------------------------------------------
 
 
-Slack Channel: 311finalproject
+**Slack Channel:** 311finalproject
+
+**Features:**
 
 An indoor navigation system that uses photos to guide users to their destination.
 
-Some features include:
-- Choice between Regular and Accessible Routes
-- Search Function For Rooms
+Some current features include:
+- A list of classrooms on campus.
+
+Some features not yet implemented include:
+- Search for a room on campus.
+- Register an account.
+- Login to an account.
+- Allow registered user to create a route.
+- Allow users to vote on the best routes.
+- Allow for routes with emphasis on accessibility :wheelchair: vs :walking: icons to toggle.
+- Bookstore indoor item locator.
+- Campus resource list.
+- About us page.
+
+Some far out features that are nice but not likely to be done:
+- Wifi Based Indoor Positioning.
+
 
 **Technology Stack:**
 - React https://reactjs.org/
