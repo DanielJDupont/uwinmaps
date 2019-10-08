@@ -1,3 +1,4 @@
+## :computer: 3110 Intro to Software Engineering Final Project :computer:
 ## :earth_americas::sparkles: UWinMaps :sparkles::earth_asia:
 
 **Check it out!**
@@ -19,11 +20,6 @@ npm start
 :fire::fire::fire:**Enjoy!**:fire::fire::fire:
 
 --------------------------------------------------
-
-
-**Slack Channel:** 
-
-311finalproject
 
 **Features:**
 
@@ -55,9 +51,14 @@ Some far out features that are nice but not likely to be done:
 - AWS: Route53, Amplify, S3
 - npm (see package.json for all used npm packages)
 
+
+**Slack Channel:** 
+
+311finalproject :seedling:
+
 **:copyright: License:**
 
-Closed source for now.
+Closed source for now. :broken_heart:
 
 --------------------------------------------------
 
