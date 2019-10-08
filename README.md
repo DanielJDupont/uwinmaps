@@ -7,10 +7,9 @@
 
 First, clone the repository!
 ```
-
+https://github.com/DanielJDupont/uwinmaps.git
 cd uwinmaps
 ```
-https://github.com/DanielJDupont/uwinmaps.git
 Then install all of the dependencies and get it running!
 ```
 npm install
