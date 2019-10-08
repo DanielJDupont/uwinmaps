@@ -21,9 +21,11 @@ npm start
 --------------------------------------------------
 
 
-**:blue_heart: Slack Channel:** 311finalproject
+**Slack Channel:** 
 
-**:purple_heart: Features:**
+311finalproject
+
+**Features:**
 
 An indoor navigation system that uses photos to guide users to their destination.
 
@@ -45,7 +47,7 @@ Some far out features that are nice but not likely to be done:
 - Wifi Based Indoor Positioning.
 
 
-**:green_heart: Technology Stack:**
+**Technology Stack:**
 - React https://reactjs.org/
 - React-Router https://reacttraining.com/react-router/web/guides/quick-start
 - Redux https://redux.js.org/ (not used yet)
