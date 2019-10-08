@@ -25,14 +25,7 @@ Slack Channel: 311finalproject
 
 An indoor navigation system that uses photos to guide users to their destination.
 
-Deployment:
-- Deployed to AWS using Amplify and domain name obtained with AWS Route 53.
-- Redeployed upon every change to the GitHub Master Branch.
-
-Package Manager:
-- Use npm, not yarn, just an arbritary choice should not use both at same time.
-
-Technologies:
+**Technology Stack:**
 - React https://reactjs.org/
 - React-Router https://reacttraining.com/react-router/web/guides/quick-start
 - Redux https://redux.js.org/ (not used yet)
@@ -44,4 +37,8 @@ Some features include:
 - Choice between Regular and Accessible Routes
 - Search Function For Rooms
 
+**License:**
+Proprietary / closed-source. To be shared only with technology recruiters.
+
+Built with :heart: at the University Of Windsor.
 :v::v::v: Code and give good vibes. :v::v::v:
