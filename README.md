@@ -1,4 +1,4 @@
-## :sparkles: UWinMaps :sparkles:
+## :earth_americas::sparkles: UWinMaps :sparkles::earth_asia:
 
 **Check it out!**
 :point_right::point_right::point_right: https://www.uwinmaps.com :point_left::point_left::point_left:
@@ -25,6 +25,10 @@ Slack Channel: 311finalproject
 
 An indoor navigation system that uses photos to guide users to their destination.
 
+Some features include:
+- Choice between Regular and Accessible Routes
+- Search Function For Rooms
+
 **Technology Stack:**
 - React https://reactjs.org/
 - React-Router https://reacttraining.com/react-router/web/guides/quick-start
@@ -33,11 +37,7 @@ An indoor navigation system that uses photos to guide users to their destination
 - AWS: Route53, Amplify, S3
 - npm (see package.json for all used npm packages)
 
-Some features include:
-- Choice between Regular and Accessible Routes
-- Search Function For Rooms
-
-**License:**
+**:copyright: License:**
 
 Proprietary / closed-source. To be shared only with technology recruiters.
 
