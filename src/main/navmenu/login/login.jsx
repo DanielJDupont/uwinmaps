@@ -1,5 +1,7 @@
 import React from "react";
 
+import { signInWithGoogle } from "../../../../src/firebase/firebase.utils";
+
 function Register() {
   return (
     <div>
@@ -25,6 +27,9 @@ function Register() {
         </div>
         <button type="submit" class="btn btn-primary">
           Login
+        </button>
+        <button onClick={signInWithGoogle} class="btn btn-primary">
+          Sign in with Google
         </button>
       </form>
     </div>
