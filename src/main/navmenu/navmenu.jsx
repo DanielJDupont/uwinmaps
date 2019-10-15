@@ -12,6 +12,9 @@ import Bookstore from "./bookstore/bookstore";
 // Router
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
+// Google Login State
+import { auth } from "../../firebase/firebase.utils";
+
 /*
 This component does need some state:
 We need to track which item in the menu is currently selected.
@@ -21,8 +24,24 @@ class NavMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentUser: null,
       active: false
     };
+  }
+
+  // Helps to stop memory leaks.
+  unsubscribeFromAuth = null;
+
+  // Just want to know when the firebase authenticate state has changed.
+  componentDidMount() {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+      this.setState({ currentUser: user });
+    });
+  }
+
+  // Helps to stop memory leaks.
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
   }
 
   toggleNavMenuOptionActivity() {
