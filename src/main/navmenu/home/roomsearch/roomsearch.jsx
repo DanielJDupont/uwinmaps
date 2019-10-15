@@ -5,6 +5,7 @@ function RoomSearch() {
     <div>
       <div class="card mx-2">
         <div class="card-header">
+          <p> Room Finder: </p>
           <form class="form-inline my-2 my-lg-0">
             <input
               class="form-control mr-sm-2"

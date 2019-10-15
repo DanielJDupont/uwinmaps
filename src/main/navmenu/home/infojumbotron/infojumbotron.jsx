@@ -18,15 +18,6 @@ function InfoJumbotron() {
             School Community!
           </p>
         </p>
-        <p class="lead">
-          <a
-            class="btn btn-primary btn-lg"
-            href="https://www.uwinmaps.com"
-            role="button"
-          >
-            Find It!
-          </a>
-        </p>
       </div>
     </div>
   );
