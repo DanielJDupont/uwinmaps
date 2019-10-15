@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { signInWithGoogle } from "../../../../src/firebase/firebase.utils";
+import { signInWithGoogle } from '../../../../src/firebase/firebase.utils';
 
 function Register() {
   return (
@@ -31,6 +31,7 @@ function Register() {
         <button onClick={signInWithGoogle} class="btn btn-primary">
           Sign in with Google
         </button>
+        <p onClick={signInWithGoogle}>Click here to sign in with google</p>
       </form>
     </div>
   );

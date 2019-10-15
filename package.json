@@ -10,12 +10,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.2",
     "react-spring": "^8.0.27",
-<<<<<<< HEAD
     "redux": "^4.0.4",
     "styled-components": "^4.4.0"
-=======
-    "redux": "^4.0.4"
->>>>>>> db8f0cea8f07c2e019b494c9c90772ce3959d502
   },
   "scripts": {
     "start": "react-scripts start",
