@@ -53,9 +53,19 @@ class NavMenu extends React.Component {
     return (
       <Router>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="https://www.uwinmaps.com/">
+          <p class="navbar-brand" href="https://www.uwinmaps.com/">
             UWinMaps
-          </a>
+          </p>
+          <p class="navbar-brand" href="https://www.uwinmaps.com/">
+            {this.state.currentUser ? (
+              <div onClick={() => auth.signOut()}>Sign out</div>
+            ) : (
+              <Link class="nav-link" to="/login">
+                Sign in
+                <span class="sr-only"></span>
+              </Link>
+            )}
+          </p>
           <button
             class="navbar-toggler"
             type="button"
