@@ -84,25 +84,12 @@ class NavMenu extends React.Component {
                 </Link>
               </li>
 
-              <li class="nav-item">
+              {/* <li class="nav-item">
                 <Link class="nav-link" to="/register">
                   Register
                   <span class="sr-only"></span>
                 </Link>
-              </li>
-
-              <li class="nav-item">
-                {this.state.currentUser ? (
-                  // Sign Out
-                  <div onClick={() => auth.signOut()}>Sign Out</div>
-                ) : (
-                  // Sign In
-                  <Link class="nav-link" to="/login">
-                    Sign In
-                    <span class="sr-only"></span>
-                  </Link>
-                )}
-              </li>
+              </li> */}
 
               <li class="nav-item">
                 <Link class="nav-link" to="/bookstore">
@@ -132,11 +119,26 @@ class NavMenu extends React.Component {
                 </Link>
               </li>
 
-              <li class="nav-item">
+              {/* <li class="nav-item">
                 <Link class="nav-link" to="/login">
                   Login
                   <span class="sr-only"></span>
                 </Link>
+              </li> */}
+
+              <li class="nav-item">
+                {this.state.currentUser ? (
+                  // Sign Out
+                  <div class="nav-link">
+                    <div onClick={() => auth.signOut()}>Sign Out</div>
+                  </div>
+                ) : (
+                  // Sign In
+                  <Link class="nav-link" to="/login">
+                    Sign In
+                    <span class="sr-only"></span>
+                  </Link>
+                )}
               </li>
             </ul>
           </div>
