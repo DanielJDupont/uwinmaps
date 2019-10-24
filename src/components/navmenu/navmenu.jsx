@@ -127,7 +127,7 @@ class NavMenu extends React.Component {
 
               <li class="nav-item">
                 <Link class="nav-link" to="/aboutus">
-                  About Us
+                  About
                   <span class="sr-only"></span>
                 </Link>
               </li>
