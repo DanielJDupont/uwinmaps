@@ -55,7 +55,7 @@ Some far out features that are nice but not likely to be done:
 - React-Router https://reacttraining.com/react-router/web/guides/quick-start
 - Redux https://redux.js.org/ (not used yet)
 - Firebase:fire: https://firebase.google.com (Cloud Firestore)
-- AWS: Route53, Amplify, S3
+- AWS: Route53 (domain name), Amplify (website hosting), S3 (image hosting)
 - npm (see package.json for all used npm packages)
 
 **Slack Channel:**
