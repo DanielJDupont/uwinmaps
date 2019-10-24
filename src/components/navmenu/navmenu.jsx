@@ -20,6 +20,8 @@ This component does need some state:
 We need to track which item in the menu is currently selected.
 */
 
+// Would be nice to rewrite this with hooks.
+// Can just use hooks for all future components.
 class NavMenu extends React.Component {
   constructor(props) {
     super(props);
@@ -53,19 +55,6 @@ class NavMenu extends React.Component {
     return (
       <Router>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <p class="navbar-brand" href="https://www.uwinmaps.com/">
-            UWinMaps
-          </p>
-          <p class="navbar-brand" href="https://www.uwinmaps.com/">
-            {this.state.currentUser ? (
-              <div onClick={() => auth.signOut()}>Sign out</div>
-            ) : (
-              <Link class="nav-link" to="/login">
-                Sign in
-                <span class="sr-only"></span>
-              </Link>
-            )}
-          </p>
           <button
             class="navbar-toggler"
             type="button"
@@ -80,42 +69,69 @@ class NavMenu extends React.Component {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                {/* Need to fix UWinMaps this highlighting */}
+                <div class="nav-link">
+                  UWinMaps
+                  <span class="sr-only"></span>
+                </div>
+              </li>
+
               <li class="nav-item active">
                 <Link class="nav-link" to="/">
                   Home
                   <span class="sr-only"></span>
                 </Link>
               </li>
-              <li class="nav-item">
-                <Link class="nav-link" to="/bookstore">
-                  Shop
-                  <span class="sr-only"></span>
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to="/events">
-                  Events
-                  <span class="sr-only"></span>
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to="/resources">
-                  Resources
-                  <span class="sr-only"></span>
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to="/aboutus">
-                  About Us
-                  <span class="sr-only"></span>
-                </Link>
-              </li>
+
               <li class="nav-item">
                 <Link class="nav-link" to="/register">
                   Register
                   <span class="sr-only"></span>
                 </Link>
               </li>
+
+              <li class="nav-item">
+                {this.state.currentUser ? (
+                  // Sign Out
+                  <div onClick={() => auth.signOut()}>Sign Out</div>
+                ) : (
+                  // Sign In
+                  <Link class="nav-link" to="/login">
+                    Sign In
+                    <span class="sr-only"></span>
+                  </Link>
+                )}
+              </li>
+
+              <li class="nav-item">
+                <Link class="nav-link" to="/bookstore">
+                  Shop
+                  <span class="sr-only"></span>
+                </Link>
+              </li>
+
+              <li class="nav-item">
+                <Link class="nav-link" to="/events">
+                  Events
+                  <span class="sr-only"></span>
+                </Link>
+              </li>
+
+              <li class="nav-item">
+                <Link class="nav-link" to="/resources">
+                  Resources
+                  <span class="sr-only"></span>
+                </Link>
+              </li>
+
+              <li class="nav-item">
+                <Link class="nav-link" to="/aboutus">
+                  About Us
+                  <span class="sr-only"></span>
+                </Link>
+              </li>
+
               <li class="nav-item">
                 <Link class="nav-link" to="/login">
                   Login

@@ -3,8 +3,8 @@ import React from "react";
 // Components
 import NavMenu from "./navmenu/navmenu";
 
-function Main() {
+function Components() {
   return <NavMenu />;
 }
 
-export default Main;
+export default Components;
