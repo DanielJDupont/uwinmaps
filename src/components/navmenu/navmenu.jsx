@@ -15,12 +15,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 // Google Login State
 import { auth } from "../../firebase/firebase.utils";
 
-// Cloud Firestore
-import { firestore } from "../../firebase/firebase.utils";
-
-// Import Data Query File
-import RoutesList from "./databasecall";
-
 /*
 This component does need some state:
 We need to track which item in the menu is currently selected.
@@ -59,66 +53,6 @@ class NavMenu extends React.Component {
   }
 
   render() {
-    var citiesRef = firestore.collection("cities");
-
-    citiesRef.doc("SF").set({
-      name: "San Francisco",
-      state: "CA",
-      country: "USA",
-      capital: false,
-      population: 860000,
-      regions: ["west_coast", "norcal"]
-    });
-    citiesRef.doc("LA").set({
-      name: "Los Angeles",
-      state: "CA",
-      country: "USA",
-      capital: false,
-      population: 3900000,
-      regions: ["west_coast", "socal"]
-    });
-    citiesRef.doc("DC").set({
-      name: "Washington, D.C.",
-      state: null,
-      country: "USA",
-      capital: true,
-      population: 680000,
-      regions: ["east_coast"]
-    });
-    citiesRef.doc("TOK").set({
-      name: "Tokyo",
-      state: null,
-      country: "Japan",
-      capital: true,
-      population: 9000000,
-      regions: ["kanto", "honshu"]
-    });
-    citiesRef.doc("BJ").set({
-      name: "Beijing",
-      state: null,
-      country: "China",
-      capital: true,
-      population: 21500000,
-      regions: ["jingjinji", "hebei"]
-    });
-
-    // Call SF from database.
-    let docRef = firestore.collection("cities").doc("SF");
-    docRef
-      .get()
-      .then(function(doc) {
-        if (doc.exists) {
-          this.setState({ storedCity: doc.data() });
-          console.log("Document data:", doc.data());
-        } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-        }
-      })
-      .catch(function(error) {
-        console.log("Error getting document:", error);
-      });
-
     return (
       <Router>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -157,7 +91,6 @@ class NavMenu extends React.Component {
                   <span class="sr-only"></span>
                 </Link>
               </li> */}
-              <RoutesList />
 
               <li class="nav-item">
                 <Link class="nav-link" to="/bookstore">

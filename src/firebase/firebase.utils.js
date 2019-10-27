@@ -31,3 +31,29 @@ export const signInWithGoogle = () =>
     .catch(function(error) {});
 
 export default firebase;
+
+// Adding to database examples:
+// citiesRef.doc("SF").set({
+//   name: "San Francisco",
+//   state: "CA",
+//   country: "USA",
+//   capital: false,
+//   population: 860000,
+//   regions: ["west_coast", "norcal"]
+// });
+// citiesRef.doc("LA").set({
+//   name: "Los Angeles",
+//   state: "CA",
+//   country: "USA",
+//   capital: false,
+//   population: 3900000,
+//   regions: ["west_coast", "socal"]
+// });
+// citiesRef.doc("DC").set({
+//   name: "Washington, D.C.",
+//   state: null,
+//   country: "USA",
+//   capital: true,
+//   population: 680000,
+//   regions: ["east_coast"]
+// });
