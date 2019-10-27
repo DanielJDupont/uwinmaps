@@ -22,17 +22,20 @@ function useTimes() {
 }
 
 const RoutesList = () => {
-  const times = useTimes();
+  const routes = useTimes();
 
   return (
     <div>
       <div>
-        {times.map(time => (
+        {routes.map(route => (
           <li>
             <div>---</div>
-            <div>{time.buildingCode}</div> {/* time.buildingCode is a string */}
-            <div>{time.buildingName}</div> {/* time.buildingName is a string */}
-            <div>{time.rooms}</div> {/* time.rooms is an array of strings*/}
+            <div>{route.buildingCode}</div>{" "}
+            {/* time.buildingCode is a string */}
+            <div>{route.buildingName}</div>{" "}
+            {/* time.buildingName is a string */}
+            <div>{route.rooms}</div>
+            {/* time.rooms is an array of strings*/}
             <div>---</div>
           </li>
         ))}
