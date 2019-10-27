@@ -5,6 +5,8 @@ import MainCarousel from "./maincarousel/maincarousel";
 import InfoJumbotron from "./infojumbotron/infojumbotron";
 import Accordion from "./accordion/accordian";
 import RoomSearch from "./roomsearch/roomsearch";
+import RoomAdder from "./roomadder/roomadder";
+
 // import SpringChain from './springchain/springchain';
 
 function HomePage() {
@@ -12,6 +14,7 @@ function HomePage() {
     <div>
       <MainCarousel />
       <InfoJumbotron />
+      <RoomAdder />
       <RoomSearch />
       <Accordion />
       <InfoJumbotron />
