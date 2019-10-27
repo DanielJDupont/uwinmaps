@@ -18,6 +18,9 @@ import { auth } from "../../firebase/firebase.utils";
 // Cloud Firestore
 import { firestore } from "../../firebase/firebase.utils";
 
+// Import Data Query File
+import TimesList from "./databasecall";
+
 /*
 This component does need some state:
 We need to track which item in the menu is currently selected.
@@ -154,10 +157,11 @@ class NavMenu extends React.Component {
                   <span class="sr-only"></span>
                 </Link>
               </li> */}
+              <TimesList />
 
               <li class="nav-item">
                 <Link class="nav-link" to="/bookstore">
-                  Shop {"" + this.state.storedCity}
+                  Shop
                   <span class="sr-only"></span>
                 </Link>
               </li>
