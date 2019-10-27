@@ -32,12 +32,7 @@ function Accordion(props) {
     <div>
       <div id="accordion" class="px-2 mx-auto">
         {routes.map(route => (
-          <div>{route.buildingCode}</div>
-        ))}
-      </div>
-      <div id="accordion" class="px-2 mx-auto">
-        {props.list.map(element => (
-          <Building {...element} />
+          <Building {...route} />
         ))}
       </div>
     </div>
@@ -45,3 +40,12 @@ function Accordion(props) {
 }
 
 export default Accordion;
+
+// Reference Code:
+// <div id="accordion" class="px-2 mx-auto">
+// {routes.map(route => (
+//   <div>
+//     {route.buildingCode} {/* What we have here are building objects */}
+//   </div>
+// ))}
+// </div>
