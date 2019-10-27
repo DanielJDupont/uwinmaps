@@ -1,7 +1,7 @@
 import React from "react";
 import Building from "./building/building";
 
-function BuildingAccordion(props) {
+function Accordion(props) {
   return (
     <div>
       <div id="accordion" class="px-2 mx-auto">
@@ -13,4 +13,4 @@ function BuildingAccordion(props) {
   );
 }
 
-export default BuildingAccordion;
+export default Accordion;

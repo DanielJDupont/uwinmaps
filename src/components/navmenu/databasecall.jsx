@@ -7,7 +7,7 @@ function useTimes() {
   useEffect(() => {
     firebase
       .firestore()
-      .collection("cities")
+      .collection("routes")
       .onSnapshot(snapshot => {
         const newTimes = snapshot.docs.map(doc => ({
           id: doc.id,
@@ -21,22 +21,24 @@ function useTimes() {
   return times;
 }
 
-const TimesList = () => {
+const RoutesList = () => {
   const times = useTimes();
 
   return (
     <div>
-      <h2>Times List</h2>
-      <ol>
+      <div>
         {times.map(time => (
           <li>
-            {time.name}
-            {time.population}
+            <div>---</div>
+            <div>{time.buildingCode}</div> {/* time.buildingCode is a string */}
+            <div>{time.buildingName}</div> {/* time.buildingName is a string */}
+            <div>{time.rooms}</div> {/* time.rooms is an array of strings*/}
+            <div>---</div>
           </li>
         ))}
-      </ol>
+      </div>
     </div>
   );
 };
 
-export default TimesList;
+export default RoutesList;

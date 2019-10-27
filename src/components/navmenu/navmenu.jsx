@@ -19,7 +19,7 @@ import { auth } from "../../firebase/firebase.utils";
 import { firestore } from "../../firebase/firebase.utils";
 
 // Import Data Query File
-import TimesList from "./databasecall";
+import RoutesList from "./databasecall";
 
 /*
 This component does need some state:
@@ -157,7 +157,7 @@ class NavMenu extends React.Component {
                   <span class="sr-only"></span>
                 </Link>
               </li> */}
-              <TimesList />
+              <RoutesList />
 
               <li class="nav-item">
                 <Link class="nav-link" to="/bookstore">
