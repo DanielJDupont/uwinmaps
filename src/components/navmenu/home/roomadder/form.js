@@ -21,7 +21,7 @@ const Form = () => {
         Swal.fire({
           type: "success",
           title: "Added!",
-          text: "The Route Is Now Stored and Visible for Other!",
+          text: "The Route Is Now Stored and Visible for Others!",
           confirmButtonText: "Great!"
         });
       })
