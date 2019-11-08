@@ -63,7 +63,7 @@ Some far out features that are nice but not likely to be done:
 
 **:copyright: License:**
 
-Closed source for now. :broken_heart:
+MIT
 
 ---
 
