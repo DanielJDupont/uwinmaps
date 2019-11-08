@@ -1,5 +1,3 @@
-## :computer: 3110 Intro to Software Engineering Final Project :computer:
-
 ## :earth_americas::sparkles: UWinMaps :sparkles::earth_asia:
 
 **Check it out!**
@@ -69,6 +67,4 @@ Closed source for now. :broken_heart:
 
 ---
 
-:rose::rose::rose: Built with :heart: at the University Of Windsor :rose::rose::rose:
-
-:v::v::v: Pull request and give good vibes :v::v::v:
+:rose::rose::rose: Built with :heart: :rose::rose::rose:
