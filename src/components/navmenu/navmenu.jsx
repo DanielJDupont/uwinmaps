@@ -15,6 +15,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 // Google Login State
 import { auth } from "../../firebase/firebase.utils";
 import PhotosPage from "./photos/photos";
+import TestComponent from "../../features/testarea/TestComponent";
 
 /*
 This component does need some state:
@@ -155,6 +156,7 @@ class NavMenu extends React.Component {
           </Route>
           <Route path="/events">
             <Events />
+            <TestComponent />
           </Route>
           <Route path="/resources">
             <Resources />
