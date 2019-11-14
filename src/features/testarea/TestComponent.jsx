@@ -18,10 +18,10 @@ class TestComponent extends Component {
     const { data, incrementCounter, decrementCounter } = this.props;
     return (
       <div>
-        <h1>Test Component</h1>
+        <h1>Test Component - Test Code</h1>
         <h3>The answer is {data}</h3>
-        <Button onClick={incrementCounter} positive content="Increment" />
-        <Button onClick={decrementCounter} negative content="Decrement" />
+        <Button onClick={incrementCounter} positive content="Test Increment" />
+        <Button onClick={decrementCounter} negative content="Test Decrement" />
       </div>
     );
   }
