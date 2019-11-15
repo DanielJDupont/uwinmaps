@@ -1,63 +1,26 @@
 import React, { Component } from "react";
 import { Grid, Button } from "semantic-ui-react";
+
+import { connect } from "react-redux";
+
 import EventList from "../EventList/EventList";
 import EventForm from "../EventForm/EventForm";
 import cuid from "cuid";
 
-const eventsFromDashboard = [
-  {
-    id: "1",
-    title: "Modern JavaScript For Web Development",
-    date: "2018-03-27T11:00:00+00:00",
-    category: "culture",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.",
-    city: "London, UK",
-    venue: "EPICentre, St Katharine's & Wapping, Windsor, Ontario, Canada",
-    hostedBy: "Amy",
-    hostPhotoURL: "https://randomuser.me/api/portraits/women/96.jpg",
-    attendees: [
-      {
-        id: "a",
-        name: "Bob",
-        photoURL: "https://randomuser.me/api/portraits/women/93.jpg"
-      },
-      {
-        id: "b",
-        name: "Tom",
-        photoURL: "https://randomuser.me/api/portraits/men/91.jpg"
-      }
-    ]
-  },
-  {
-    id: "2",
-    title: "Web and Mobile Frameworks",
-    date: "2018-03-28T14:00:00+00:00",
-    category: "drinks",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.",
-    city: "London, UK",
-    venue: "EPICentre, Henrietta Street, Windsor, Ontario, Canada",
-    hostedBy: "Tom",
-    hostPhotoURL: "https://randomuser.me/api/portraits/men/96.jpg",
-    attendees: [
-      {
-        id: "b",
-        name: "Tom",
-        photoURL: "https://randomuser.me/api/portraits/women/95.jpg"
-      },
-      {
-        id: "a",
-        name: "Bob",
-        photoURL: "https://randomuser.me/api/portraits/men/94.jpg"
-      }
-    ]
-  }
-];
+import { createEvent, deleteEvent, updateEvent } from "../eventActions";
+
+const mapState = state => ({
+  events: state.events
+});
+
+const actions = {
+  createEvent,
+  deleteEvent,
+  updateEvent
+};
 
 class EventDashboard extends Component {
   state = {
-    events: eventsFromDashboard,
     isOpen: false,
     selectedEvent: null
   };
@@ -92,28 +55,44 @@ class EventDashboard extends Component {
   handelCreateEvent = newEvent => {
     newEvent.id = cuid();
     newEvent.hostPhotoURL = "/assests/user.png";
-    // Appending newEvent to the current array.
+    this.props.createEvent(newEvent);
     this.setState(({ events }) => ({
-      events: [...events, newEvent],
       isOpen: false
     }));
   };
 
   handleSelectEvent = (evt, event) => {
-    console.log(evt);
-    console.log(event);
     this.setState({
       selectedEvent: event,
       isOpen: true
     });
   };
 
+  handleUpdateEvent = updatedEvent => {
+    this.props.updateEvent(updatedEvent);
+    this.setState(({ events }) => ({
+      isOpen: false,
+      selectedEvent: null
+    }));
+  };
+
+  handleDeleteEvent = id => {
+    this.setState(({ events }) => ({
+      events: events.filter(e => e.id !== id)
+    }));
+  };
+
   render() {
-    const { events, isOpen, selectedEvent } = this.state;
+    const { isOpen, selectedEvent } = this.state;
+    const { events } = this.props;
     return (
       <Grid>
         <Grid.Column width={10}>
-          <EventList events={events} selectEvent={this.handleSelectEvent} />
+          <EventList
+            events={events}
+            selectEvent={this.handleSelectEvent}
+            deleteEvent={this.handleDeleteEvent}
+          />
         </Grid.Column>
         <Grid.Column width={6}>
           <Button
@@ -123,6 +102,8 @@ class EventDashboard extends Component {
           />
           {isOpen && (
             <EventForm
+              key={selectedEvent ? selectedEvent.id : 0}
+              updateEvent={this.handleUpdateEvent}
               selectedEvent={selectedEvent}
               createEvent={this.handelCreateEvent}
               cancelFormOpen={this.handleCreateFormCancel}
@@ -134,4 +115,4 @@ class EventDashboard extends Component {
   }
 }
 
-export default EventDashboard;
+export default connect(mapState, actions)(EventDashboard);
