@@ -58,7 +58,8 @@ const eventsFromDashboard = [
 class EventDashboard extends Component {
   state = {
     events: eventsFromDashboard,
-    isOpen: false
+    isOpen: false,
+    selectedEvent: null
   };
 
   // handleFormOpen = () => {
@@ -69,10 +70,23 @@ class EventDashboard extends Component {
   //   }
   // };
 
-  handleIsOpenToggle = () => {
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen
-    }));
+  // handleIsOpenToggle = () => {
+  //   this.setState(prevState => ({
+  //     isOpen: !prevState.isOpen
+  //   }));
+  // };
+
+  handleCreateFormOpen = () => {
+    this.setState({
+      isOpen: true,
+      selectedEvent: null
+    });
+  };
+
+  handleCreateFormCancel = () => {
+    this.setState({
+      isOpen: false
+    });
   };
 
   handelCreateEvent = newEvent => {
@@ -85,23 +99,33 @@ class EventDashboard extends Component {
     }));
   };
 
+  handleSelectEvent = (evt, event) => {
+    console.log(evt);
+    console.log(event);
+    this.setState({
+      selectedEvent: event,
+      isOpen: true
+    });
+  };
+
   render() {
-    const { events, isOpen } = this.state;
+    const { events, isOpen, selectedEvent } = this.state;
     return (
       <Grid>
         <Grid.Column width={10}>
-          <EventList events={events} />
+          <EventList events={events} selectEvent={this.handleSelectEvent} />
         </Grid.Column>
         <Grid.Column width={6}>
           <Button
-            onClick={this.handleIsOpenToggle}
+            onClick={this.handleCreateFormOpen}
             positive
             content="Create Event"
           />
           {isOpen && (
             <EventForm
+              selectedEvent={selectedEvent}
               createEvent={this.handelCreateEvent}
-              cancelFormOpen={this.handleIsOpenToggle}
+              cancelFormOpen={this.handleCreateFormCancel}
             />
           )}
         </Grid.Column>
