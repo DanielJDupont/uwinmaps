@@ -1,5 +1,5 @@
 import React from "react";
-import Components from "../components/components";
+import Components from "../../components/components.jsx";
 
 function App() {
   return (

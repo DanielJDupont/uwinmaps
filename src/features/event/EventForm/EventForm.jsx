@@ -46,9 +46,13 @@ class EventForm extends Component {
           <Button positive type="submit">
             Submit
           </Button>
-          <Button type="button">Cancel</Button>
+          <Button onClick={cancelFormOpen} type="button">
+            Cancel
+          </Button>
         </Form>
       </Segment>
     );
   }
 }
+
+export default EventForm;

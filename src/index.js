@@ -7,8 +7,8 @@ import { configureStore } from "./app/store/configureStore";
 import React from "react";
 import ReactDOM from "react-dom";
 
-import App from "./app/App";
 import * as serviceWorker from "./serviceWorker";
+import App from "./app/layout/App";
 
 const store = configureStore();
 const rootEle = document.getElementById("root");

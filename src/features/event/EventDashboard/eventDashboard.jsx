@@ -1,16 +1,93 @@
 import React, { Component } from "react";
-import { Grid } from "semantic-ui-react";
+import { Grid, Button } from "semantic-ui-react";
 import EventList from "../EventList/EventList";
+import EventForm from "../EventForm/EventForm";
+
+const eventsFromDashboard = [
+  {
+    id: "1",
+    title: "Modern JavaScript For Web Development",
+    date: "2018-03-27T11:00:00+00:00",
+    category: "culture",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.",
+    city: "London, UK",
+    venue: "EPICentre, St Katharine's & Wapping, Windsor, Ontario, Canada",
+    hostedBy: "Amy",
+    hostPhotoURL: "https://randomuser.me/api/portraits/women/96.jpg",
+    attendees: [
+      {
+        id: "a",
+        name: "Bob",
+        photoURL: "https://randomuser.me/api/portraits/women/93.jpg"
+      },
+      {
+        id: "b",
+        name: "Tom",
+        photoURL: "https://randomuser.me/api/portraits/men/91.jpg"
+      }
+    ]
+  },
+  {
+    id: "2",
+    title: "Web and Mobile Frameworks",
+    date: "2018-03-28T14:00:00+00:00",
+    category: "drinks",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.",
+    city: "London, UK",
+    venue: "EPICentre, Henrietta Street, Windsor, Ontario, Canada",
+    hostedBy: "Tom",
+    hostPhotoURL: "https://randomuser.me/api/portraits/men/96.jpg",
+    attendees: [
+      {
+        id: "b",
+        name: "Tom",
+        photoURL: "https://randomuser.me/api/portraits/women/95.jpg"
+      },
+      {
+        id: "a",
+        name: "Bob",
+        photoURL: "https://randomuser.me/api/portraits/men/94.jpg"
+      }
+    ]
+  }
+];
 
 class EventDashboard extends Component {
+  state = {
+    events: eventsFromDashboard,
+    isOpen: false
+  };
+
+  // handleFormOpen = () => {
+  //   if (this.state.isOpen === false) {
+  //     this.setState({ isOpen: true });
+  //   } else {
+  //     this.setState({ isOpen: false });
+  //   }
+  // };
+
+  handleIsOpenToggle = () => {
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen
+    }));
+  };
+
   render() {
+    const { events, isOpen } = this.state;
     return (
       <Grid>
         <Grid.Column width={10}>
-          <EventList />
+          <EventList events={events} />
         </Grid.Column>
         <Grid.Column width={6}>
-          <h2>Right Column</h2>
+          <Button
+            onClick={this.handleIsOpenToggle}
+            positive
+            content="Create Event"
+          />
+          {isOpen && <EventForm cancelFormOpen={this.handleIsOpenToggle} />}
         </Grid.Column>
       </Grid>
     );
