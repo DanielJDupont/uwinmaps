@@ -1,5 +1,5 @@
 import { createReducer } from "../../app/common/util/reducer.Utils";
-import { CREATE_EVENT, UPDATE_EVENT, DELETE_EVENT } from "./eventConstants";
+import { CREATE_EVENT, UPDATE_EVENT, DELETE_EVENT } from "./EventConstants";
 
 const initialState = [
   {
@@ -10,18 +10,18 @@ const initialState = [
     description: "The best library in the world",
     city: "San Francisco, California, United States of America",
     venue: "Apple Dome",
-    hostedBy: "Jimmy",
-    hostPhotoURL: "https://randomuser.me/api/portraits/men/20.jpg",
+    hostedBy: "Amy",
+    hostPhotoURL: "https://randomuser.me/api/portraits/women/97.jpg",
     attendees: [
       {
         id: "a",
-        name: "Bob",
-        photoURL: "https://randomuser.me/api/portraits/men/20.jpg"
+        name: "Noah",
+        photoURL: "https://randomuser.me/api/portraits/men/21.jpg"
       },
       {
         id: "b",
-        name: "Amy",
-        photoURL: "https://randomuser.me/api/portraits/men/20.jpg"
+        name: "Eline",
+        photoURL: "https://randomuser.me/api/portraits/women/96.jpg"
       }
     ]
   },
@@ -39,18 +39,19 @@ const initialState = [
       {
         id: "a",
         name: "Bob",
-        photoURL: "https://randomuser.me/api/portraits/men/20.jpg"
+        photoURL: "https://randomuser.me/api/portraits/women/22.jpg"
       },
       {
         id: "b",
         name: "Amy",
-        photoURL: "https://randomuser.me/api/portraits/men/20.jpg"
+        photoURL: "https://randomuser.me/api/portraits/men/33.jpg"
       }
     ]
   }
 ];
 
 const createEvent = (state, payload) => {
+  // Spread contents of array then add one element onto it.
   return [...state, payload.event];
 };
 

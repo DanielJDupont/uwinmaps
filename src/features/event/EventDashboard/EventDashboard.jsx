@@ -7,16 +7,18 @@ import EventList from "../EventList/EventList";
 import EventForm from "../EventForm/EventForm";
 import cuid from "cuid";
 
-import { createEvent, deleteEvent, updateEvent } from "../eventActions";
+import { createEvent, deleteEvent, updateEvent } from "../EventActions";
 
-const mapState = state => ({
-  events: state.events
-});
+const mapState = state => {
+  return {
+    events: state.events
+  };
+};
 
 const actions = {
   createEvent,
-  deleteEvent,
-  updateEvent
+  updateEvent,
+  deleteEvent
 };
 
 class EventDashboard extends Component {
@@ -24,20 +26,6 @@ class EventDashboard extends Component {
     isOpen: false,
     selectedEvent: null
   };
-
-  // handleFormOpen = () => {
-  //   if (this.state.isOpen === false) {
-  //     this.setState({ isOpen: true });
-  //   } else {
-  //     this.setState({ isOpen: false });
-  //   }
-  // };
-
-  // handleIsOpenToggle = () => {
-  //   this.setState(prevState => ({
-  //     isOpen: !prevState.isOpen
-  //   }));
-  // };
 
   handleCreateFormOpen = () => {
     this.setState({

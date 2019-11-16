@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import { Grid } from "semantic-ui-react";
 import EventListItem from "./EventListItem";
 
 class EventList extends Component {
