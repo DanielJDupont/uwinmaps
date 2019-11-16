@@ -7,10 +7,9 @@ import {
   Icon,
   Header
 } from "semantic-ui-react";
-
 import Confetti from "react-confetti";
 
-const HomePage = () => {
+const HomePage = ({ history }) => {
   return (
     <Segment inverted textAlign="center" vertical className="masthead">
       <Confetti numberOfPieces={3} colors={["yellow"]} opacity={0.2} />
@@ -19,8 +18,8 @@ const HomePage = () => {
           <Icon name="yellow large map outline" inverted />
           UWinMaps
         </Header>
-        <Button size="huge" inverted>
-          Get started
+        <Button onClick={() => history.push("./events")} size="huge" inverted>
+          Get Started
           <Icon name="right arrow" inverted />
         </Button>
         <Header as="h2" inverted>
