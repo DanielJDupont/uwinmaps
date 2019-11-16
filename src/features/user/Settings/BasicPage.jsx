@@ -4,6 +4,11 @@ const BasicPage = () => {
   return (
     <div>
       <h1>Basic Page</h1>
+      <h1>Basic Page</h1>
+      <h1>Basic Page</h1>
+      <h1>Basic Page</h1>
+      <h1>Basic Page</h1>
+      <h1>Basic Page</h1>
     </div>
   );
 };
