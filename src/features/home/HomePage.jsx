@@ -20,6 +20,9 @@ const HomePage = () => {
           Get started
           <Icon name="right arrow" inverted />
         </Button>
+        <Header as="h2" inverted>
+          Find Classrooms, Books, and Events
+        </Header>
       </Container>
     </Segment>
   );
