@@ -9,6 +9,7 @@ import ReactDOM from "react-dom";
 
 import * as serviceWorker from "./serviceWorker";
 import App from "./app/layout/App";
+import { BrowserRouter } from "react-router-dom";
 
 const store = configureStore();
 const rootEle = document.getElementById("root");
@@ -17,7 +18,9 @@ console.log(store.getState());
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   rootEle
 );

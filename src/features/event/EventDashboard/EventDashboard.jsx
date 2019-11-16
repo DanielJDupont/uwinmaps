@@ -77,9 +77,7 @@ class EventDashboard extends Component {
   };
 
   handleDeleteEvent = id => {
-    this.setState(({ events }) => ({
-      events: events.filter(e => e.id !== id)
-    }));
+    this.props.deleteEvent(id);
   };
 
   render() {
