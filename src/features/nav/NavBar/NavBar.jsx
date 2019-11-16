@@ -27,12 +27,12 @@ class NavBar extends Component {
           <Menu.Item as={NavLink} exact to="/" header>
             <i className="material-icons">map</i> UWinMaps
           </Menu.Item>
-          <Menu.Item name="Classrooms" />
+          <Menu.Item name="Classrooms - PORTING CODE" />
           <Menu.Item name="Bookstore" />
-          <Menu.Item as={NavLink} to="/events" name="Events" />
+          <Menu.Item as={NavLink} to="/events" name="Events - PORTING CODE" />
           {/*<Menu.Item as={NavLink} to="/people" name="People" />*/}
           <Menu.Item name="Resources" />
-          <Menu.Item name="Photos Testing" />
+          <Menu.Item name="Photos Testing - PORTING CODE" />
           <Menu.Item>
             <Button
               as={Link}
