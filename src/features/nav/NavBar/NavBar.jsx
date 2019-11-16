@@ -30,9 +30,9 @@ class NavBar extends Component {
           <Menu.Item name="Classrooms" />
           <Menu.Item name="Bookstore" />
           <Menu.Item as={NavLink} to="/events" name="Events" />
-          <Menu.Item as={NavLink} to="/people" name="People" />
+          {/*<Menu.Item as={NavLink} to="/people" name="People" />*/}
           <Menu.Item name="Resources" />
-          <Menu.Item name="Photos" />
+          <Menu.Item name="Photos Testing" />
           <Menu.Item>
             <Button
               as={Link}
