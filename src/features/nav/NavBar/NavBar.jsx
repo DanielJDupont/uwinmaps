@@ -40,6 +40,7 @@ class NavBar extends Component {
           <Menu.Item name="Photos Testing - PORTING CODE" />
           <Menu.Item>
             <Button
+              className="ui teal button"
               as={Link}
               to="/createEvent"
               floated="right"
