@@ -2,7 +2,7 @@ const sampleData = [
   {
     id: "1",
     title: "How to Code in React in 10 Hours",
-    date: "2020-03-27",
+    date: "2020-03-27T19:00:00",
     category: "technology",
     description: "The best library in the world",
     city: "San Francisco, California, United States of America",
@@ -25,7 +25,7 @@ const sampleData = [
   {
     id: "2",
     title: "JavaScript For Advanced Users",
-    date: "2020-03-23",
+    date: "2020-03-23T14:00:00",
     category: "technology",
     description: "The best programming language in the world",
     city: "Windsor, Ontario, Canada",

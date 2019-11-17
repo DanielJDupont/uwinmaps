@@ -1,10 +1,13 @@
-import "./index.css";
-
 // Redux
 import { Provider } from "react-redux";
 import { configureStore } from "./app/store/configureStore";
 import React from "react";
 import ReactDOM from "react-dom";
+import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
+import "./index.css";
+
+import ReduxToastr from "react-redux-toastr";
+
 import * as serviceWorker from "./serviceWorker";
 import App from "./app/layout/App";
 import { BrowserRouter } from "react-router-dom";
@@ -20,6 +23,11 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <ScrollToTop>
+        <ReduxToastr
+          position="bottom-right"
+          transitionIn="fadeIn"
+          transitionOut="fadeOut"
+        />
         <App />
       </ScrollToTop>
     </BrowserRouter>

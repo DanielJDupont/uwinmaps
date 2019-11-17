@@ -12,7 +12,7 @@ import Confetti from "react-confetti";
 const HomePage = ({ history }) => {
   return (
     <Segment inverted textAlign="center" vertical className="masthead">
-      <Confetti numberOfPieces={3} colors={["yellow"]} opacity={0.2} />
+      <Confetti numberOfPieces={10} colors={["yellow"]} opacity={0.1} />
       <Container text>
         <Header as="h1" inverted>
           <Icon name="yellow large map outline" inverted />
