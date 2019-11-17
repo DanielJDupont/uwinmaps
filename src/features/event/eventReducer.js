@@ -1,54 +1,12 @@
 import { createReducer } from "../../app/common/util/reducer.Utils";
-import { CREATE_EVENT, UPDATE_EVENT, DELETE_EVENT } from "./EventConstants";
+import {
+  CREATE_EVENT,
+  UPDATE_EVENT,
+  DELETE_EVENT,
+  FETCH_EVENTS
+} from "./EventConstants";
 
-const initialState = [
-  {
-    id: "1",
-    title: "How to Code in React in 10 Hours",
-    date: "2020-03-27",
-    category: "technology",
-    description: "The best library in the world",
-    city: "San Francisco, California, United States of America",
-    venue: "Apple Dome",
-    hostedBy: "Amy",
-    hostPhotoURL: "https://randomuser.me/api/portraits/women/97.jpg",
-    attendees: [
-      {
-        id: "a",
-        name: "Noah",
-        photoURL: "https://randomuser.me/api/portraits/men/21.jpg"
-      },
-      {
-        id: "b",
-        name: "Eline",
-        photoURL: "https://randomuser.me/api/portraits/women/96.jpg"
-      }
-    ]
-  },
-  {
-    id: "2",
-    title: "JavaScript For Advanced Users",
-    date: "2020-03-23",
-    category: "technology",
-    description: "The best programming language in the world",
-    city: "Windsor, Ontario, Canada",
-    venue: "University of Windsor",
-    hostedBy: "Jimmy",
-    hostPhotoURL: "https://randomuser.me/api/portraits/men/20.jpg",
-    attendees: [
-      {
-        id: "a",
-        name: "Bob",
-        photoURL: "https://randomuser.me/api/portraits/women/22.jpg"
-      },
-      {
-        id: "b",
-        name: "Amy",
-        photoURL: "https://randomuser.me/api/portraits/men/33.jpg"
-      }
-    ]
-  }
-];
+const initialState = [];
 
 const createEvent = (state, payload) => {
   // Spread contents of array then add one element onto it.
@@ -66,8 +24,13 @@ const deleteEvent = (state, payload) => {
   return [...state.filter(event => event.id !== payload.eventId)];
 };
 
+const fetchEvents = (state, payload) => {
+  return payload.events;
+};
+
 export default createReducer(initialState, {
   [CREATE_EVENT]: createEvent,
   [UPDATE_EVENT]: updateEvent,
-  [DELETE_EVENT]: deleteEvent
+  [DELETE_EVENT]: deleteEvent,
+  [FETCH_EVENTS]: fetchEvents
 });
