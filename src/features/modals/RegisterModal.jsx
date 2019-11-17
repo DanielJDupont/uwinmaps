@@ -10,7 +10,7 @@ class RegisterModal extends Component {
   render() {
     return (
       <Modal
-        style={{ position: "static", height: "325px" }}
+        style={{ position: "static", height: "375px" }}
         size="mini"
         open={true}
         onClose={this.props.closeModal}
