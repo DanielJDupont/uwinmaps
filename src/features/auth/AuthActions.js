@@ -10,6 +10,7 @@ export const login = creds => {
         .auth()
         .signInWithEmailAndPassword(creds.email, creds.password);
       dispatch(closeModal());
+      console.log("Login Success!");
     } catch (error) {
       throw new SubmissionError({
         _error: error.message
