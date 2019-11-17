@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Segment, Button } from "semantic-ui-react";
+import { Form, Segment, Button, Divider } from "semantic-ui-react";
 import { Field, reduxForm } from "redux-form";
 import { TextInput } from "../../../app/common/form/TextInput";
 
@@ -26,9 +26,10 @@ const RegisterForm = () => {
             component={TextInput}
             placeholder="Password"
           />
-          <Button fluid size="large" color="teal">
+          <Button fluid size="large" color="blue">
             Register
           </Button>
+          <Divider horizontal>OR</Divider>
         </Segment>
       </Form>
     </div>

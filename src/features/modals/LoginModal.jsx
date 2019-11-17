@@ -10,12 +10,12 @@ class LoginModal extends Component {
   render() {
     return (
       <Modal
+        style={{ position: "static", height: "325px" }}
         size="mini"
         open={true}
-        className="centered"
         onClose={this.props.closeModal}
       >
-        <Modal.Header>Login tfo UWinMaps</Modal.Header>
+        <Modal.Header>Login to UWinMaps</Modal.Header>
         <Modal.Content>
           <Modal.Description>
             <LoginForm />
