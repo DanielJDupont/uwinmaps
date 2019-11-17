@@ -19,6 +19,7 @@ import PlaceInput from "../../../app/common/form/PlaceInput";
 import SelectInput from "../../../app/common/form/SelectInput";
 import { TextArea } from "../../../app/common/form/TextArea";
 import { TextInput } from "../../../app/common/form/TextInput";
+import TestComponent from "../../testarea/TestComponent";
 
 const mapState = (state, ownProps) => {
   const eventId = ownProps.match.params.id;
@@ -119,6 +120,7 @@ class EventForm extends Component {
       <Grid>
         <Grid.Column width={10}>
           <Segment>
+            <TestComponent />
             <Header sub color="blue" content="Event Details" />
             <Form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
               <Field
