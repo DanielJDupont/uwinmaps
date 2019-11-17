@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import {
   Image,
   Segment,
@@ -10,8 +10,16 @@ import {
 } from "semantic-ui-react";
 import DropzoneInput from "./DropzoneInput";
 import CropperInput from "./CropperInput";
+import { connect } from "react-redux";
+import { uploadProfileImage } from "../userActions";
+import { toastr } from "react-redux-toastr";
+import Swal from "sweetalert2";
 
-const PhotosPage = () => {
+const actions = {
+  uploadProfileImage
+};
+
+const PhotosPage = ({ uploadProfileImage }) => {
   const [files, setFiles] = useState([]);
   const [image, setImage] = useState(null);
 
@@ -20,6 +28,27 @@ const PhotosPage = () => {
       files.forEach(file => URL.revokeObjectURL(file.preview));
     };
   }, [files]);
+
+  const handleUploadImage = async () => {
+    try {
+      await uploadProfileImage(image, files[0].name);
+      toastr.success("Success", "Photo has been uploaded");
+      Swal.fire({
+        type: "success",
+        title: "Success!",
+        text: "Photo Uploaded",
+        confirmButtonText: "Great!"
+      });
+    } catch (error) {
+      console.log(error);
+      toastr.error("Oops...", "Something went wrong!");
+    }
+  };
+
+  const handleCancelCrop = () => {
+    setFiles([]);
+    setImage(null);
+  };
 
   return (
     <Segment>
@@ -41,15 +70,30 @@ const PhotosPage = () => {
         <Grid.Column width={4}>
           <Header sub color="blue" content="Step 3 - Preview & Upload" />
           {files.length > 0 && (
-            <div
-              className="img-preview"
-              src={files[0].preview}
-              style={{
-                minHeight: "200px",
-                minWidth: "200px",
-                overflow: "hidden"
-              }}
-            />
+            <Fragment>
+              <div
+                className="img-preview"
+                src={files[0].preview}
+                style={{
+                  minHeight: "200px",
+                  minWidth: "200px",
+                  overflow: "hidden"
+                }}
+              />
+              <Button.Group>
+                <Button
+                  onClick={handleUploadImage}
+                  style={{ width: "100px" }}
+                  positive
+                  icon="check"
+                />
+                <Button
+                  onClick={handleCancelCrop}
+                  style={{ width: "100px" }}
+                  icon="close"
+                />
+              </Button.Group>
+            </Fragment>
           )}
         </Grid.Column>
       </Grid>
@@ -77,4 +121,4 @@ const PhotosPage = () => {
   );
 };
 
-export default PhotosPage;
+export default connect(null, actions)(PhotosPage);

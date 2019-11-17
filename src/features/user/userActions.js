@@ -49,7 +49,7 @@ export const uploadProfileImage = (file, fileName) => async (
     // upload the file to fb storage
     let uploadedFile = await firebase.uploadFile(path, file, null, options);
     // get url of image
-    let downloadURL = await uploadedFile.uploadTaskSnapshot.downloadURL;
+    let downloadURL = await uploadedFile.uploadTaskSnapshot.ref.getDownloadURL();
     // get the userdoc from firestore
     let userDoc = await firestore.get(`users/${user.uid}`);
     // check if user has photo, if not update profile
