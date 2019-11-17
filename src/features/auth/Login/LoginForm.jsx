@@ -25,7 +25,7 @@ const LoginForm = ({ login, handleSubmit }) => {
           type="password"
           placeholder="password"
         />
-        <Button fluid size="large" color="teal">
+        <Button fluid size="large" color="blue">
           Login
         </Button>
       </Segment>
