@@ -46,7 +46,7 @@ export const registerUser = user => async (
   }
 };
 
-const socialLogin = selectedProvider => async (
+export const socialLogin = selectedProvider => async (
   dispatch,
   getState,
   { getFirebase, getFirestore }
@@ -62,7 +62,7 @@ const socialLogin = selectedProvider => async (
     if (user.additionalUserInfo.isNewUser) {
       await firestore.set(`users/${user.user.uid}`, {
         displayName: user.profile.displayName,
-        photoURL: user.profile.avatarUrl,
+        avatarUrl: user.profile.avatarUrl,
         createdAt: firestore.FieldValue.serverTimestamp()
       });
     }
@@ -70,5 +70,3 @@ const socialLogin = selectedProvider => async (
     console.log(error);
   }
 };
-
-export default socialLogin;

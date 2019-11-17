@@ -1,14 +1,14 @@
 import React from "react";
 import { Form, Segment, Button, Label, Divider } from "semantic-ui-react";
 import { Field, reduxForm } from "redux-form";
-import { login } from "../AuthActions";
-import socialLogin from "../AuthActions";
+import { login, socialLogin } from "../AuthActions";
 import { connect } from "react-redux";
 import { TextInput } from "../../../app/common/form/TextInput";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const actions = {
-  login
+  login,
+  socialLogin
 };
 
 const LoginForm = ({ login, handleSubmit, error, socialLogin }) => {
