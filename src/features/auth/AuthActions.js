@@ -1,5 +1,7 @@
-import { closeModal } from "../modals/modalActions";
 import { SubmissionError, reset } from "redux-form";
+import { toastr } from "react-redux-toastr";
+import { closeModal } from "../modals/modalActions";
+import Swal from "sweetalert2";
 
 export const login = creds => {
   return async (dispatch, getState, { getFirebase }) => {
@@ -9,7 +11,6 @@ export const login = creds => {
         .auth()
         .signInWithEmailAndPassword(creds.email, creds.password);
       dispatch(closeModal());
-      console.log("Login Success!");
     } catch (error) {
       throw new SubmissionError({
         _error: error.message
@@ -26,20 +27,23 @@ export const registerUser = user => async (
   const firebase = getFirebase();
   const firestore = getFirestore();
   try {
+    // create the user in auth
     let createdUser = await firebase
       .auth()
       .createUserWithEmailAndPassword(user.email, user.password);
-    console.log(createdUser);
-    await createdUser.user.updateProfile({
+    // update the auth profile
+    await createdUser.updateProfile({
       displayName: user.displayName
     });
+    // create a new profile in firestore
     let newUser = {
       displayName: user.displayName,
       createdAt: firestore.FieldValue.serverTimestamp()
     };
-    await firestore.set(`users/${createdUser.user.uid}`, { ...newUser });
+    await firestore.set(`users/${createdUser.uid}`, { ...newUser });
     dispatch(closeModal());
   } catch (error) {
+    console.log(error);
     throw new SubmissionError({
       _error: error.message
     });
@@ -62,11 +66,35 @@ export const socialLogin = selectedProvider => async (
     if (user.additionalUserInfo.isNewUser) {
       await firestore.set(`users/${user.user.uid}`, {
         displayName: user.profile.displayName,
-        avatarUrl: user.profile.avatarUrl,
+        photoURL: user.profile.avatarUrl,
         createdAt: firestore.FieldValue.serverTimestamp()
       });
     }
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const updatePassword = creds => async (
+  dispatch,
+  getState,
+  { getFirebase }
+) => {
+  const firebase = getFirebase();
+  const user = firebase.auth().currentUser;
+  try {
+    await user.updatePassword(creds.newPassword1);
+    await dispatch(reset("account"));
+    toastr.success("Sucess", "Your password has been updated");
+    Swal.fire({
+      type: "success",
+      title: "Success!",
+      text: "Your password has been updated!",
+      confirmButtonText: "Great!"
+    });
+  } catch (error) {
+    throw new SubmissionError({
+      _error: error.message
+    });
   }
 };
