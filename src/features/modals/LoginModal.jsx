@@ -10,7 +10,7 @@ class LoginModal extends Component {
   render() {
     return (
       <Modal
-        style={{ position: "static", height: "325px" }}
+        style={{ position: "static", height: "400px" }}
         size="mini"
         open={true}
         onClose={this.props.closeModal}
