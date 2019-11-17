@@ -43,7 +43,7 @@ class BasicPage extends Component {
             name="dateOfBirth"
             component={DateInput}
             placeholder="Date of Birth"
-            dateFormat="YYYY-MM-DD"
+            dateFormat="yyyy-mm-dd"
             showYearDropdown={true}
             showMonthDropdown={true}
             dropdownMode="select"
