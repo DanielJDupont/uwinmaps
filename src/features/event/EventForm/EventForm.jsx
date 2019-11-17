@@ -64,7 +64,7 @@ const category = [
 class EventForm extends Component {
   state = {
     cityLatLng: {},
-    vanueLatLng: {}
+    venueLatLng: {}
   };
 
   onFormSubmit = values => {
