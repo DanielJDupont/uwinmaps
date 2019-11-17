@@ -7,6 +7,10 @@ const sampleData = [
     description: "The best library in the world",
     city: "San Francisco, California, United States of America",
     venue: "Apple Dome",
+    venueLatLng: {
+      lat: 51.5118074,
+      lng: -0.12300089999996544
+    },
     hostedBy: "Amy",
     hostPhotoURL: "https://randomuser.me/api/portraits/women/97.jpg",
     attendees: [
@@ -30,6 +34,10 @@ const sampleData = [
     description: "The best programming language in the world",
     city: "Windsor, Ontario, Canada",
     venue: "University of Windsor",
+    venueLatLng: {
+      lat: 51.5118073,
+      lng: -0.12300089999996543
+    },
     hostedBy: "Jimmy",
     hostPhotoURL: "https://randomuser.me/api/portraits/men/20.jpg",
     attendees: [
