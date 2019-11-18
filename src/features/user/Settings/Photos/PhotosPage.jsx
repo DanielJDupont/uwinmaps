@@ -1,8 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
-
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
-
 import {
   Image,
   Segment,
@@ -12,7 +10,6 @@ import {
   Button,
   Card
 } from "semantic-ui-react";
-
 import DropzoneInput from "./DropzoneInput";
 import CropperInput from "./CropperInput";
 import { connect } from "react-redux";
@@ -46,10 +43,18 @@ const actions = {
 const mapState = state => ({
   auth: state.firebase.auth,
   profile: state.firebase.profile,
-  photos: state.firestore.ordered.photos
+  photos: state.firestore.ordered.photos,
+  loading: state.async.loading
 });
 
-const PhotosPage = ({ uploadProfileImage, photos, profile, deletePhoto }) => {
+const PhotosPage = ({
+  uploadProfileImage,
+  photos,
+  profile,
+  deletePhoto,
+  setMainPhoto,
+  loading
+}) => {
   const [files, setFiles] = useState([]);
   const [cropResult, setCropResult] = useState("");
   const [image, setImage] = useState(null);
@@ -64,7 +69,6 @@ const PhotosPage = ({ uploadProfileImage, photos, profile, deletePhoto }) => {
   const handleUploadImage = async () => {
     try {
       await uploadProfileImage(image, files[0].name);
-
       toastr.success("Success", "Photo has been uploaded");
       Swal.fire({
         type: "success",
@@ -133,12 +137,14 @@ const PhotosPage = ({ uploadProfileImage, photos, profile, deletePhoto }) => {
               />
               <Button.Group>
                 <Button
+                  loading={loading}
                   onClick={handleUploadImage}
                   style={{ width: "100px" }}
                   positive
                   icon="check"
                 />
                 <Button
+                  disabled={loading}
                   onClick={handleCancelCrop}
                   style={{ width: "100px" }}
                   icon="close"
