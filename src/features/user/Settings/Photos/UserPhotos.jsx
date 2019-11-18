@@ -27,10 +27,10 @@ const UserPhotos = ({ photos, profile, deletePhoto, setMainPhoto }) => {
               <div className="ui two buttons">
                 <Button
                   onClick={() => setMainPhoto(photo)}
-                  icon="sort up"
+                  icon="chevron up"
                   basic
                   color="blue"
-                ></Button>
+                />
                 <Button
                   onClick={() => deletePhoto(photo)}
                   basic

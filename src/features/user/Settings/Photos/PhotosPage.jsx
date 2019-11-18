@@ -39,7 +39,8 @@ const query = ({ auth }) => {
 
 const actions = {
   uploadProfileImage,
-  deletePhoto
+  deletePhoto,
+  setMainPhoto
 };
 
 const mapState = state => ({
