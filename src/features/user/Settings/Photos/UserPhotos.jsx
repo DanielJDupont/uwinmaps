@@ -25,9 +25,12 @@ const UserPhotos = ({ photos, profile, deletePhoto, setMainPhoto }) => {
             <Card key={photo.id}>
               <Image src={photo.url} />
               <div className="ui two buttons">
-                <Button onClick={() => setMainPhoto(photo)} basic color="blue">
-                  Main
-                </Button>
+                <Button
+                  onClick={() => setMainPhoto(photo)}
+                  icon="sort up"
+                  basic
+                  color="blue"
+                ></Button>
                 <Button
                   onClick={() => deletePhoto(photo)}
                   basic
