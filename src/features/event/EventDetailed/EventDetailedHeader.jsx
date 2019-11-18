@@ -1,12 +1,10 @@
 import React from "react";
-import { Segment, Item, Button, Image, Header } from "semantic-ui-react";
+import { Segment, Image, Item, Header, Button, Label } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { format, parseISO } from "date-fns";
+import format from "date-fns/format";
 
 const eventImageStyle = {
-  filter: "brightness(30%)",
-  height: "150px",
-  width: "100%"
+  filter: "brightness(30%)"
 };
 
 const eventImageTextStyle = {
@@ -18,52 +16,95 @@ const eventImageTextStyle = {
   color: "white"
 };
 
-export const EventDetailedHeader = ({ event }) => {
+const EventDetailedHeader = ({
+  openModal,
+  authenticated,
+  loading,
+  event,
+  isHost,
+  isGoing,
+  goingToEvent,
+  cancelGoingToEvent
+}) => {
+  let eventDate;
+  if (event.date) {
+    eventDate = event.date.toDate();
+  }
   return (
-    <div>
-      <Segment.Group>
-        <Segment basic attached="top" style={{ padding: "0" }}>
-          <Image
-            src="https://images.pexels.com/photos/443383/pexels-photo-443383.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-            fluid
-            style={eventImageStyle}
-          />
+    <Segment.Group>
+      <Segment basic attached="top" style={{ padding: "0" }}>
+        <Image
+          src={`/assets/categoryImages/${event.category}.jpg`}
+          fluid
+          style={eventImageStyle}
+        />
 
-          <Segment basic style={eventImageTextStyle}>
-            <Item.Group>
-              <Item>
-                <Item.Content>
-                  <Header
-                    size="huge"
-                    content={event.title}
-                    style={{ color: "white" }}
-                  />
-                  <p>
-                    {event.date && format(parseISO(event.date), "EEEE do LLLL")}
-                  </p>
-                  <p>
-                    Hosted by <strong>{event.hostedBy}</strong>
-                  </p>
-                </Item.Content>
-              </Item>
-            </Item.Group>
-          </Segment>
+        <Segment basic style={eventImageTextStyle}>
+          <Item.Group>
+            <Item>
+              <Item.Content>
+                <Header
+                  size="huge"
+                  content={event.title}
+                  style={{ color: "white" }}
+                />
+                <p>{format(eventDate, "dddd Do MMMM")}</p>
+                <p>
+                  Hosted by <strong>{event.hostedBy}</strong>
+                </p>
+              </Item.Content>
+            </Item>
+          </Item.Group>
         </Segment>
+      </Segment>
 
-        <Segment attached="bottom">
-          <Button>Cancel My Place</Button>
-          <Button color="blue">JOIN THIS EVENT</Button>
+      <Segment attached="bottom">
+        {!isHost && (
+          <div>
+            {isGoing && !event.cancelled && (
+              <Button onClick={() => cancelGoingToEvent(event)}>
+                Cancel My Place
+              </Button>
+            )}
 
-          <Button
-            as={Link}
-            to={`/manage/${event.id}`}
-            color="orange"
-            floated="right"
-          >
+            {!isGoing && authenticated && !event.cancelled && (
+              <Button
+                loading={loading}
+                onClick={() => goingToEvent(event)}
+                color="teal"
+              >
+                JOIN THIS EVENT
+              </Button>
+            )}
+
+            {!authenticated && !event.cancelled && (
+              <Button
+                loading={loading}
+                onClick={() => openModal("UnauthModal")}
+                color="teal"
+              >
+                JOIN THIS EVENT
+              </Button>
+            )}
+
+            {event.cancelled && !isHost && (
+              <Label
+                size="large"
+                color="red"
+                content="This event has been cancelled"
+              />
+            )}
+          </div>
+        )}
+
+        {isHost && (
+          <Button as={Link} to={`/manage/${event.id}`} color="orange">
             Manage Event
           </Button>
-        </Segment>
-      </Segment.Group>
-    </div>
+        )}
+      </Segment>
+    </Segment.Group>
   );
 };
+
+export default EventDetailedHeader;

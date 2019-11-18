@@ -1,4 +1,8 @@
 import React, { useState, useEffect, Fragment } from "react";
+
+import { compose } from "redux";
+import { firestoreConnect } from "react-redux-firebase";
+
 import {
   Image,
   Segment,
@@ -8,30 +12,53 @@ import {
   Button,
   Card
 } from "semantic-ui-react";
+
 import DropzoneInput from "./DropzoneInput";
 import CropperInput from "./CropperInput";
 import { connect } from "react-redux";
-import { uploadProfileImage } from "../userActions";
 import { toastr } from "react-redux-toastr";
 import Swal from "sweetalert2";
+
+import { uploadProfileImage } from "../../userActions";
+import UserPhotos from "./UserPhotos";
+
+const query = ({ auth }) => {
+  return [
+    {
+      collection: "users",
+      doc: auth.uid,
+      subcollections: [{ collection: "photos" }],
+      storeAs: "photos"
+    }
+  ];
+};
 
 const actions = {
   uploadProfileImage
 };
 
-const PhotosPage = ({ uploadProfileImage }) => {
+const mapState = state => ({
+  auth: state.firebase.auth,
+  profile: state.firebase.profile,
+  photos: state.firestore.ordered.photos
+});
+
+const PhotosPage = ({ uploadProfileImage, photos, profile }) => {
   const [files, setFiles] = useState([]);
+  const [cropResult, setCropResult] = useState("");
   const [image, setImage] = useState(null);
 
   useEffect(() => {
     return () => {
       files.forEach(file => URL.revokeObjectURL(file.preview));
+      URL.revokeObjectURL(cropResult);
     };
-  }, [files]);
+  }, [files, cropResult]);
 
   const handleUploadImage = async () => {
     try {
       await uploadProfileImage(image, files[0].name);
+
       toastr.success("Success", "Photo has been uploaded");
       Swal.fire({
         type: "success",
@@ -40,7 +67,6 @@ const PhotosPage = ({ uploadProfileImage }) => {
         confirmButtonText: "Great!"
       });
     } catch (error) {
-      console.log(error);
       toastr.error("Oops...", "Something went wrong!");
     }
   };
@@ -48,6 +74,7 @@ const PhotosPage = ({ uploadProfileImage }) => {
   const handleCancelCrop = () => {
     setFiles([]);
     setImage(null);
+    setCropResult("");
   };
 
   return (
@@ -63,7 +90,11 @@ const PhotosPage = ({ uploadProfileImage }) => {
         <Grid.Column width={4}>
           <Header sub color="blue" content="Step 2 - Resize image" />
           {files.length > 0 && (
-            <CropperInput setImage={setImage} imagePreview={files[0].preview} />
+            <CropperInput
+              imagePreview={files[0].preview}
+              setImage={setImage}
+              setCropResult={setCropResult}
+            />
           )}
         </Grid.Column>
         <Grid.Column width={1} />
@@ -71,13 +102,11 @@ const PhotosPage = ({ uploadProfileImage }) => {
           <Header sub color="blue" content="Step 3 - Preview & Upload" />
           {files.length > 0 && (
             <Fragment>
-              <div
-                className="img-preview"
-                src={files[0].preview}
+              <Image
+                src={cropResult}
                 style={{
                   minHeight: "200px",
-                  minWidth: "200px",
-                  overflow: "hidden"
+                  minWidth: "200px"
                 }}
               />
               <Button.Group>
@@ -117,8 +146,14 @@ const PhotosPage = ({ uploadProfileImage }) => {
           </div>
         </Card>
       </Card.Group>
+
+      <Divider />
+      <UserPhotos photos={photos} profile={profile} />
     </Segment>
   );
 };
 
-export default connect(null, actions)(PhotosPage);
+export default compose(
+  connect(mapState, actions),
+  firestoreConnect(auth => query(auth))
+)(PhotosPage);
