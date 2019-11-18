@@ -19,7 +19,11 @@ import { connect } from "react-redux";
 import { toastr } from "react-redux-toastr";
 import Swal from "sweetalert2";
 
-import { uploadProfileImage } from "../../userActions";
+import {
+  uploadProfileImage,
+  deletePhoto,
+  setMainPhoto
+} from "../../userActions";
 import UserPhotos from "./UserPhotos";
 
 const query = ({ auth }) => {
@@ -34,7 +38,8 @@ const query = ({ auth }) => {
 };
 
 const actions = {
-  uploadProfileImage
+  uploadProfileImage,
+  deletePhoto
 };
 
 const mapState = state => ({
@@ -43,7 +48,7 @@ const mapState = state => ({
   photos: state.firestore.ordered.photos
 });
 
-const PhotosPage = ({ uploadProfileImage, photos, profile }) => {
+const PhotosPage = ({ uploadProfileImage, photos, profile, deletePhoto }) => {
   const [files, setFiles] = useState([]);
   const [cropResult, setCropResult] = useState("");
   const [image, setImage] = useState(null);
@@ -75,6 +80,22 @@ const PhotosPage = ({ uploadProfileImage, photos, profile }) => {
     setFiles([]);
     setImage(null);
     setCropResult("");
+  };
+
+  const handleDeletePhoto = async photo => {
+    try {
+      await deletePhoto(photo);
+    } catch (error) {
+      toastr.error("Oops", error.message);
+    }
+  };
+
+  const handleSetMainPhoto = async photo => {
+    try {
+      await setMainPhoto(photo);
+    } catch (error) {
+      toastr.error("Error Setting the Position of the Photo", error.message);
+    }
   };
 
   return (
@@ -148,7 +169,12 @@ const PhotosPage = ({ uploadProfileImage, photos, profile }) => {
       </Card.Group>
 
       <Divider />
-      <UserPhotos photos={photos} profile={profile} />
+      <UserPhotos
+        photos={photos}
+        profile={profile}
+        deletePhoto={handleDeletePhoto}
+        setMainPhoto={handleSetMainPhoto}
+      />
     </Segment>
   );
 };

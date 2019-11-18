@@ -1,6 +1,6 @@
 import React from "react";
 
-import { signInWithGoogle } from "../../../../src/firebase/firebase.utils";
+import { signInWithGoogle } from "../../../firebase/firebase.utils";
 
 function Register() {
   return (
