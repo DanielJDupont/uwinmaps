@@ -1,5 +1,13 @@
 // This class reduces the amount of boilerplate in the EventActions.js file.
 
+export const objectToArray = object => {
+  if (object) {
+    return Object.entries(object).map(e =>
+      Object.assign({}, e[1], { id: e[0] })
+    );
+  }
+};
+
 // The shape of the data that will be sent to firestore after a new event is created.
 export const createNewEvent = (user, photoURL, event) => {
   return {

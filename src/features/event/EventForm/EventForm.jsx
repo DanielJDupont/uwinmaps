@@ -4,7 +4,6 @@ import { Segment, Form, Button, Grid, Header } from "semantic-ui-react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
 import { updateEvent, createEvent } from "../EventActions";
-import cuid from "cuid";
 
 import {
   composeValidators,
@@ -21,14 +20,23 @@ import { TextArea } from "../../../app/common/form/TextArea";
 import { TextInput } from "../../../app/common/form/TextInput";
 import TestComponent from "../../testarea/TestComponent";
 import { toastr } from "react-redux-toastr";
+import Swal from "sweetalert2";
+import { withFirestore } from "react-redux-firebase";
 
 const mapState = (state, ownProps) => {
   const eventId = ownProps.match.params.id;
 
   let event = {};
-  if (eventId && state.events.length > 0) {
-    event = state.events.filter(ev => ev.id === eventId)[0];
+
+  if (
+    state.firestore.ordered.events &&
+    state.firestore.ordered.events.length > 0
+  ) {
+    event = state.firestore.ordered.events.filter(
+      event => event.id === eventId[0] || {}
+    );
   }
+
   return {
     initialValues: event
   };
@@ -67,6 +75,22 @@ class EventForm extends Component {
     cityLatLng: {},
     venueLatLng: {}
   };
+
+  async componentDidMount() {
+    const { firestore, match, history } = this.props;
+    let event = await firestore.get(`events/${match.params.id}`);
+    console.log(event);
+    if (!event.exists) {
+      history.push("/events");
+      Swal.fire({
+        type: "error",
+        title: "Sorry!",
+        text: "What you are looking for wasn't found!",
+        confirmButtonText: "Gotcha!"
+      });
+      toastr.error("Sorry!", "Event not found!");
+    }
+  }
 
   onFormSubmit = async values => {
     values.venueLatLng = this.state.venueLatLng;
@@ -192,7 +216,9 @@ class EventForm extends Component {
   }
 }
 
-export default connect(
-  mapState,
-  actions
-)(reduxForm({ form: "eventForm", validate })(EventForm));
+export default withFirestore(
+  connect(
+    mapState,
+    actions
+  )(reduxForm({ form: "eventForm", validate })(EventForm))
+);
