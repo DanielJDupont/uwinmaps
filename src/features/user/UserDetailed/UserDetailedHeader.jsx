@@ -1,11 +1,11 @@
 import React from "react";
 import { Grid, Header, Item, Segment } from "semantic-ui-react";
-import differenceInYears from "date-fns/difference_in_years";
+import differenceInCalendarYears from "date-fns/differenceInCalendarYears";
 
 const UserDetailedHeader = ({ profile }) => {
   let age;
   if (profile.dateOfBirth) {
-    age = differenceInYears(Date.now(), profile.dateOfBirth.toDate());
+    age = differenceInCalendarYears(Date.now(), profile.dateOfBirth.toDate());
   } else {
     age = "unknown age";
   }

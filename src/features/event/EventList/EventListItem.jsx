@@ -31,6 +31,7 @@ class EventListItem extends Component {
         <Segment>
           <span>
             <Icon name="clock" />
+            {console.log("event.date DEBUG: " + event.date)}
             {format(event.date.toDate(), "EEEE do LLL")} at{" "}
             {format(event.date.toDate(), "h:mm a")} |
             <Icon name="marker" /> {event.venue}
