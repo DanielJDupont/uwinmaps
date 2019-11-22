@@ -11,17 +11,27 @@ import {
 } from "../async/asyncActions";
 import { fetchSampleData } from "../../app/data/mockApi";
 import { toastr } from "react-redux-toastr";
+import { createNewEvent } from "../../app/common/util/helpers";
 
 export const createEvent = event => {
-  return async dispatch => {
+  // async will automatically return a promise from what is inside.
+  return async (dispatch, getState, { getFirestore, getFirebase }) => {
+    const firestore = getFirestore();
+    const firebase = getFirebase();
+    const user = firebase.auth().currentUser;
+    const photoURL = getState().firebase.profile.photoURL; // Current user's photo inside store.
+    const newEvent = createNewEvent(user, photoURL, event); // Auth profile vs store profile not the same, photoURL for safety.
     try {
-      dispatch({
-        type: CREATE_EVENT,
-        payload: {
-          event
-        }
+      let createdEvent = await firestore.add("events", newEvent); // createdEvent snapshot will be returned.
+      await firestore.set(`event_attendee/${createdEvent.id}_${user.uid}`, {
+        // Prevents duplication using _${user.uid}
+        eventId: createdEvent.id,
+        userUid: user.uid,
+        eventDate: event.date,
+        host: true
       });
       toastr.success("Success!", "Event Has Been Created!");
+      return createdEvent; // async returns the promise of a createdEvent object.
     } catch (error) {
       toastr.error("Opps...", "Something Went Wrong!");
     }

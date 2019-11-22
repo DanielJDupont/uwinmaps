@@ -20,6 +20,7 @@ import SelectInput from "../../../app/common/form/SelectInput";
 import { TextArea } from "../../../app/common/form/TextArea";
 import { TextInput } from "../../../app/common/form/TextInput";
 import TestComponent from "../../testarea/TestComponent";
+import { toastr } from "react-redux-toastr";
 
 const mapState = (state, ownProps) => {
   const eventId = ownProps.match.params.id;
@@ -67,20 +68,18 @@ class EventForm extends Component {
     venueLatLng: {}
   };
 
-  onFormSubmit = values => {
+  onFormSubmit = async values => {
     values.venueLatLng = this.state.venueLatLng;
-    if (this.props.initialValues.id) {
-      this.props.updateEvent(values);
-      this.props.history.push(`/events/${this.props.initialValues.id}`);
-    } else {
-      const newEvent = {
-        ...values,
-        id: cuid(),
-        hostPhotoURL: "/assets/user.png",
-        hostedBy: "Bob"
-      };
-      this.props.createEvent(newEvent);
-      this.props.history.push(`/events/${newEvent.id}`);
+    try {
+      if (this.props.initialValues.id) {
+        this.props.updateEvent(values);
+        this.props.history.push(`/events/${this.props.initialValues.id}`);
+      } else {
+        let createdEvent = await this.props.createEvent(values);
+        this.props.history.push(`/events/${createdEvent.id}`);
+      }
+    } catch (error) {
+      console.log("ERROR onFormSubmit");
     }
   };
 
@@ -161,11 +160,12 @@ class EventForm extends Component {
               />
               <Field
                 name="date"
+                type="text"
                 component={DateInput}
-                placeholder="Event Date"
-                dateFormat="dd LLL yyyy h:mm a"
+                dateFormat="YYYY-MM-DD HH:mm"
+                timeFormat="HH:mm"
                 showTimeSelect
-                timeFormat="HH :mm"
+                placeholder="Date and time of event"
               />
 
               <Button
