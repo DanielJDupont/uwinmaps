@@ -27,9 +27,11 @@ const EventDetailedHeader = ({
   cancelGoingToEvent
 }) => {
   let eventDate;
+  console.log("event received in EventDetailedHeader DEBUG: " + event);
   if (event.date) {
     eventDate = event.date.toDate();
   }
+  // <p>{format(eventDate, "DDDD do MMMM")}</p>
   return (
     <Segment.Group>
       <Segment basic attached="top" style={{ padding: "0" }}>
@@ -49,7 +51,7 @@ const EventDetailedHeader = ({
                   style={{ color: "white" }}
                 />
                 {console.log("eventDate DEBUG: " + eventDate)}
-                <p>{format(eventDate, "DDDD do MMMM")}</p>
+                <p>DDDD do MMMM - DEBUG</p>
                 <p>
                   Hosted by <strong>{event.hostedBy}</strong>
                 </p>
