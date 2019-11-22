@@ -57,10 +57,6 @@ Some far out features that are nice but not likely to be done:
 - AWS: Route53 (domain name), Amplify (website hosting), S3 (image hosting)
 - npm (see package.json for all used npm packages)
 
-**Slack Channel:**
-
-311finalproject :seedling:
-
 **:copyright: License:**
 
 MIT License, Copyright (c) 2019 Andrea Swartz and Daniel Dupont
