@@ -48,7 +48,8 @@ const EventDetailedHeader = ({
                   content={event.title}
                   style={{ color: "white" }}
                 />
-                <p>{format(eventDate, "dddd Do MMMM")}</p>
+                {console.log("eventDate DEBUG: " + eventDate)}
+                <p>{format(eventDate, "DDDD do MMMM")}</p>
                 <p>
                   Hosted by <strong>{event.hostedBy}</strong>
                 </p>
