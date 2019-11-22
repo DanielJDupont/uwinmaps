@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 import { Segment, Item, Label } from "semantic-ui-react";
-import { issuedAtTime } from "@firebase/util";
+import { Link } from "react-router-dom";
 
-export const EventDetailedSidebar = ({ attendees }) => {
+const EventDetailedSidebar = ({ attendees }) => {
   const isHost = false;
   return (
     <Fragment>
@@ -12,11 +12,10 @@ export const EventDetailedSidebar = ({ attendees }) => {
         attached="top"
         secondary
         inverted
-        color="blue"
+        color="teal"
       >
         {attendees && attendees.length}{" "}
-        {attendees && attendees.length === 1 ? "Person" : "People"}
-        Going
+        {attendees && attendees.length === 1 ? "Person" : "People"} Going
       </Segment>
       <Segment attached>
         <Item.Group divided>
@@ -26,7 +25,7 @@ export const EventDetailedSidebar = ({ attendees }) => {
                 {isHost && (
                   <Label
                     style={{ position: "absolute" }}
-                    color="blue"
+                    color="orange"
                     ribbon="right"
                   >
                     Host
@@ -34,7 +33,11 @@ export const EventDetailedSidebar = ({ attendees }) => {
                 )}
                 <Item.Image size="tiny" src={attendee.photoURL} />
                 <Item.Content verticalAlign="middle">
-                  <Item.Header as="h3">{attendee.displayName}</Item.Header>
+                  <Item.Header as="h3">
+                    <Link to={`/profile/${attendee.id}`}>
+                      {attendee.displayName}
+                    </Link>
+                  </Item.Header>
                 </Item.Content>
               </Item>
             ))}
@@ -43,3 +46,5 @@ export const EventDetailedSidebar = ({ attendees }) => {
     </Fragment>
   );
 };
+
+export default EventDetailedSidebar;

@@ -9,7 +9,6 @@ import {
 const initialState = [];
 
 const createEvent = (state, payload) => {
-  // Spread contents of array then add one element onto it.
   return [...state, payload.event];
 };
 

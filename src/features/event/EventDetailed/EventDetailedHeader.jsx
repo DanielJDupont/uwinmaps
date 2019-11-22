@@ -1,7 +1,7 @@
-import React from "react";
-import { Segment, Image, Item, Header, Button, Label } from "semantic-ui-react";
+import React, { Fragment } from "react";
+import { Segment, Image, Item, Header, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import format from "date-fns/format";
+import { format } from "date-fns";
 
 const eventImageStyle = {
   filter: "brightness(30%)"
@@ -17,21 +17,15 @@ const eventImageTextStyle = {
 };
 
 const EventDetailedHeader = ({
-  openModal,
-  authenticated,
-  loading,
   event,
   isHost,
   isGoing,
   goingToEvent,
-  cancelGoingToEvent
+  cancelGoingToEvent,
+  loading,
+  authenticated,
+  openModal
 }) => {
-  let eventDate;
-  console.log("event received in EventDetailedHeader DEBUG: " + event);
-  if (event.date) {
-    eventDate = event.date.toDate();
-  }
-  // <p>{format(eventDate, "DDDD do MMMM")}</p>
   return (
     <Segment.Group>
       <Segment basic attached="top" style={{ padding: "0" }}>
@@ -50,12 +44,19 @@ const EventDetailedHeader = ({
                   content={event.title}
                   style={{ color: "white" }}
                 />
-                {console.log("eventDate DEBUG: " + eventDate)}
                 <p>
                   {event.date && format(event.date.toDate(), "EEEE do LLLL")}
                 </p>
                 <p>
-                  Hosted by <strong>{event.hostedBy}</strong>
+                  Hosted by{" "}
+                  <strong>
+                    <Link
+                      to={`/profile/${event.hostUid}`}
+                      style={{ color: "white" }}
+                    >
+                      {event.hostedBy}
+                    </Link>
+                  </strong>
                 </p>
               </Item.Content>
             </Item>
@@ -63,16 +64,15 @@ const EventDetailedHeader = ({
         </Segment>
       </Segment>
 
-      <Segment attached="bottom">
+      <Segment attached="bottom" clearing>
         {!isHost && (
-          <div>
-            {isGoing && !event.cancelled && (
+          <Fragment>
+            {isGoing && (
               <Button onClick={() => cancelGoingToEvent(event)}>
                 Cancel My Place
               </Button>
             )}
-
-            {!isGoing && authenticated && !event.cancelled && (
+            {!isGoing && authenticated && (
               <Button
                 loading={loading}
                 onClick={() => goingToEvent(event)}
@@ -81,8 +81,7 @@ const EventDetailedHeader = ({
                 JOIN THIS EVENT
               </Button>
             )}
-
-            {!authenticated && !event.cancelled && (
+            {!authenticated && (
               <Button
                 loading={loading}
                 onClick={() => openModal("UnauthModal")}
@@ -91,19 +90,16 @@ const EventDetailedHeader = ({
                 JOIN THIS EVENT
               </Button>
             )}
-
-            {event.cancelled && !isHost && (
-              <Label
-                size="large"
-                color="red"
-                content="This event has been cancelled"
-              />
-            )}
-          </div>
+          </Fragment>
         )}
 
         {isHost && (
-          <Button as={Link} to={`/manage/${event.id}`} color="orange">
+          <Button
+            as={Link}
+            to={`/manage/${event.id}`}
+            color="orange"
+            floated="right"
+          >
             Manage Event
           </Button>
         )}

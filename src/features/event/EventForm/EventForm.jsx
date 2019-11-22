@@ -22,7 +22,6 @@ import TestComponent from "../../testarea/TestComponent";
 import { toastr } from "react-redux-toastr";
 import Swal from "sweetalert2";
 import { withFirestore } from "react-redux-firebase";
-
 const mapState = (state, ownProps) => {
   const eventId = ownProps.match.params.id;
 
@@ -32,35 +31,36 @@ const mapState = (state, ownProps) => {
     state.firestore.ordered.events &&
     state.firestore.ordered.events.length > 0
   ) {
-    event = state.firestore.ordered.events.filter(
-      event => event.id === eventId[0] || {}
-    );
+    event =
+      state.firestore.ordered.events.filter(event => event.id === eventId)[0] ||
+      {};
   }
-
   return {
     initialValues: event,
-    event
+    event,
+    loading: state.async.loading
   };
 };
 
+const actions = {
+  createEvent,
+  updateEvent,
+  cancelToggle
+};
+
 const validate = combineValidators({
-  title: isRequired({ message: "The event title is required !" }),
+  title: isRequired({ message: "The event title is required" }),
   category: isRequired({ message: "The category is required" }),
   description: composeValidators(
-    isRequired({ message: "Please enter a description !" }),
+    isRequired({ message: "Please enter a description" }),
     hasLengthGreaterThan(4)({
-      message: "Description needs to be at least 5 characters !"
+      message: "Description needs to be at least 5 characters"
     })
   )(),
   city: isRequired("city"),
   venue: isRequired("venue"),
   date: isRequired("date")
 });
-
-const actions = {
-  updateEvent,
-  createEvent
-};
 
 const category = [
   { key: "drinks", text: "Drinks", value: "drinks" },
@@ -78,62 +78,57 @@ class EventForm extends Component {
   };
 
   async componentDidMount() {
-    const { firestore, match, history } = this.props;
-    let event = await firestore.get(`events/${match.params.id}`);
-    console.log(event);
-    if (!event.exists) {
-      history.push("/events");
-      Swal.fire({
-        type: "error",
-        title: "Sorry!",
-        text: "What you are looking for wasn't found!",
-        confirmButtonText: "Gotcha!"
-      });
-      toastr.error("Sorry!", "Event not found!");
-    } else {
-      this.setState({
-        venueLatLng: event.data().venueLatLng
-      });
-    }
+    const { firestore, match } = this.props;
+    await firestore.setListener(`events/${match.params.id}`);
+  }
+
+  async componentWillUnmount() {
+    const { firestore, match } = this.props;
+    await firestore.unsetListener(`events/${match.params.id}`);
   }
 
   onFormSubmit = async values => {
     values.venueLatLng = this.state.venueLatLng;
     try {
       if (this.props.initialValues.id) {
-        this.props.updateEvent(values);
+        if (Object.keys(values.venueLatLng).length === 0) {
+          values.venueLatLng = this.props.event.venueLatLng;
+        }
+        await this.props.updateEvent(values);
         this.props.history.push(`/events/${this.props.initialValues.id}`);
       } else {
         let createdEvent = await this.props.createEvent(values);
         this.props.history.push(`/events/${createdEvent.id}`);
       }
     } catch (error) {
-      console.log("ERROR onFormSubmit");
+      console.log(error);
     }
   };
 
   handleCitySelect = selectedCity => {
-    geocodeByAddress(selectedCity).then(res =>
-      getLatLng(res[0])
-        .then(latlng => {
-          this.setState({
-            cityLatLng: latlng
-          });
-        })
-        .then(() => this.props.change("city", selectedCity))
-    );
+    geocodeByAddress(selectedCity)
+      .then(results => getLatLng(results[0]))
+      .then(latlng => {
+        this.setState({
+          cityLatLng: latlng
+        });
+      })
+      .then(() => {
+        this.props.change("city", selectedCity);
+      });
   };
 
   handleVenueSelect = selectedVenue => {
-    geocodeByAddress(selectedVenue).then(res =>
-      getLatLng(res[0])
-        .then(latlng => {
-          this.setState({
-            venueLatLng: latlng
-          });
-        })
-        .then(() => this.props.change("venue", selectedVenue))
-    );
+    geocodeByAddress(selectedVenue)
+      .then(results => getLatLng(results[0]))
+      .then(latlng => {
+        this.setState({
+          venueLatLng: latlng
+        });
+      })
+      .then(() => {
+        this.props.change("venue", selectedVenue);
+      });
   };
 
   render() {
@@ -143,15 +138,19 @@ class EventForm extends Component {
       invalid,
       submitting,
       pristine,
-      event
+      event,
+      cancelToggle,
+      loading
     } = this.props;
     return (
       <Grid>
         <Grid.Column width={10}>
           <Segment>
-            <TestComponent />
-            <Header sub color="blue" content="Event Details" />
-            <Form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
+            <Header sub color="teal" content="Event details" />
+            <Form
+              onSubmit={this.props.handleSubmit(this.onFormSubmit)}
+              autoComplete="off"
+            >
               <Field
                 name="title"
                 component={TextInput}
@@ -166,51 +165,52 @@ class EventForm extends Component {
               <Field
                 name="description"
                 component={TextArea}
-                placeholder="Tell us about your event"
                 rows={3}
+                placeholder="Tell us about your event"
               />
+              <Header sub color="teal" content="Event location details" />
               <Field
                 name="city"
                 component={PlaceInput}
                 options={{ types: ["(cities)"] }}
                 onSelect={this.handleCitySelect}
-                placeholder="Event City"
+                placeholder="Event city"
               />
-              <Header sub color="blue" content="Event Location Details" />
               <Field
                 name="venue"
                 component={PlaceInput}
-                placeholder="Event Venue"
                 options={{
                   location: new google.maps.LatLng(this.state.cityLatLng),
                   radius: 1000,
                   types: ["establishment"]
                 }}
                 onSelect={this.handleVenueSelect}
+                placeholder="Event venue"
               />
               <Field
                 name="date"
                 component={DateInput}
                 dateFormat="dd LLL yyyy h:mm a"
+                placeholder="Event date"
                 showTimeSelect
                 timeFormat="HH:mm"
-                placeholder="Event Date"
               />
-
               <Button
+                disabled={invalid || submitting || pristine}
+                loading={loading}
                 positive
                 type="submit"
-                disabled={invalid || submitting || pristine}
               >
                 Submit
               </Button>
               <Button
-                type="button"
+                disabled={loading}
                 onClick={
                   initialValues.id
                     ? () => history.push(`/events/${initialValues.id}`)
-                    : () => history.push("/events")
+                    : () => history.push("events")
                 }
+                type="button"
               >
                 Cancel
               </Button>
@@ -220,7 +220,7 @@ class EventForm extends Component {
                 floated="right"
                 content={event.cancelled ? "Reactivate event" : "Cancel event"}
                 onClick={() => cancelToggle(!event.cancelled, event.id)}
-              ></Button>
+              />
             </Form>
           </Segment>
         </Grid.Column>
@@ -233,5 +233,9 @@ export default withFirestore(
   connect(
     mapState,
     actions
-  )(reduxForm({ form: "eventForm", validate })(EventForm))
+  )(
+    reduxForm({ form: "eventForm", validate, enableReinitialize: true })(
+      EventForm
+    )
+  )
 );
