@@ -5,24 +5,21 @@ import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 
 const DateInput = ({
-  input: { value, onChange, onBlur, ...restInput },
+  input,
   width,
   placeholder,
   meta: { touched, error },
   ...rest
 }) => {
-  if (value) {
-    value = moment(value, "X");
-  }
   return (
-    <Form.Field error={touched && !!error} width={width}>
+    <Form.Field error={touched && !!error}>
       <DatePicker
         {...rest}
         placeholderText={placeholder}
-        selected={value ? moment(value) : null}
-        onChange={onChange}
-        onBlur={() => onBlur()}
-        {...restInput}
+        selected={input.value ? new Date(input.value) : null}
+        onChange={input.onChange}
+        onBlur={() => input.onBlur}
+        onChangeRaw={e => e.preventDefault()}
       />
       {touched && error && (
         <Label basic color="red">

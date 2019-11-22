@@ -11,6 +11,7 @@ import {
 } from "../async/asyncActions";
 import { fetchSampleData } from "../../app/data/mockApi";
 import { toastr } from "react-redux-toastr";
+
 import { createNewEvent } from "../../app/common/util/helpers";
 
 export const createEvent = event => {
@@ -24,16 +25,20 @@ export const createEvent = event => {
     try {
       let createdEvent = await firestore.add("events", newEvent); // createdEvent snapshot will be returned.
       await firestore.set(`event_attendee/${createdEvent.id}_${user.uid}`, {
-        // Prevents duplication using _${user.uid}
         eventId: createdEvent.id,
         userUid: user.uid,
         eventDate: event.date,
         host: true
       });
+
       toastr.success("Success!", "Event Has Been Created!");
       return createdEvent; // async returns the promise of a createdEvent object.
     } catch (error) {
-      toastr.error("Opps...", "Something Went Wrong!");
+      toastr.error(
+        "Opps...",
+        "Something Went Wrong With EventActions.js createEvent"
+      );
+      console.log(error);
     }
   };
 };
