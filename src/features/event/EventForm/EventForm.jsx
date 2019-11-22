@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Segment, Form, Button, Grid, Header } from "semantic-ui-react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
-import { updateEvent, createEvent } from "../EventActions";
+import { updateEvent, createEvent, cancelToggle } from "../EventActions";
 
 import {
   composeValidators,
@@ -38,7 +38,8 @@ const mapState = (state, ownProps) => {
   }
 
   return {
-    initialValues: event
+    initialValues: event,
+    event
   };
 };
 
@@ -89,6 +90,10 @@ class EventForm extends Component {
         confirmButtonText: "Gotcha!"
       });
       toastr.error("Sorry!", "Event not found!");
+    } else {
+      this.setState({
+        venueLatLng: event.data().venueLatLng
+      });
     }
   }
 
@@ -137,7 +142,8 @@ class EventForm extends Component {
       initialValues,
       invalid,
       submitting,
-      pristine
+      pristine,
+      event
     } = this.props;
     return (
       <Grid>
@@ -208,6 +214,13 @@ class EventForm extends Component {
               >
                 Cancel
               </Button>
+              <Button
+                type="button"
+                color={event.cancelled ? "green" : "red"}
+                floated="right"
+                content={event.cancelled ? "Reactivate event" : "Cancel event"}
+                onClick={() => cancelToggle(!event.cancelled, event.id)}
+              ></Button>
             </Form>
           </Segment>
         </Grid.Column>

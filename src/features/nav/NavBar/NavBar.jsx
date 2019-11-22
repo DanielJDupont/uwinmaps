@@ -40,8 +40,8 @@ class NavBar extends Component {
           <Menu.Item as={NavLink} exact to="/" header>
             <i className="material-icons">map</i> UWinMaps
           </Menu.Item>
-          <Menu.Item name="Classrooms" />
-          <Menu.Item name="Bookstore" />
+          <Menu.Item as={NavLink} exact to="/classrooms" name="Classrooms" />
+          <Menu.Item as={NavLink} exact to="/bookstore" name="Bookstore" />
           <Menu.Item as={NavLink} exact to="/events" name="Events" />
 
           {authenticated && (
