@@ -27,10 +27,10 @@ const AboutPage = ({ pristine, submitting, handleSubmit, updateProfile }) => {
   return (
     <Segment>
       <Header dividing size="large" content="About Me" />
-      <p>Complete your profile to get the most out of this site</p>
+      <p>Complete your profile to get the most out of UWinMaps.</p>
       <Form onSubmit={handleSubmit(updateProfile)}>
+        <label>Tell us your status: </label>
         <Form.Group inline>
-          <label>Tell us your status: </label>
           <Field
             name="status"
             component={RadioInput}
@@ -52,9 +52,16 @@ const AboutPage = ({ pristine, submitting, handleSubmit, updateProfile }) => {
             value="married"
             label="Married"
           />
+          <Field
+            name="status"
+            component={RadioInput}
+            type="radio"
+            value="other"
+            label="Other"
+          />
         </Form.Group>
         <Divider />
-        <label>Tell us about yourself</label>
+        <label>Tell us about yourself:</label>
         <Field name="about" component={TextArea} placeholder="About Me" />
         <Field
           name="interests"

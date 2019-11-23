@@ -32,10 +32,9 @@ const UserPhotos = ({
                   loading={loading}
                   onClick={() => setMainPhoto(photo)}
                   basic
+                  icon="angle double up"
                   color="green"
-                >
-                  Main
-                </Button>
+                />
                 <Button
                   onClick={() => deletePhoto(photo)}
                   basic
