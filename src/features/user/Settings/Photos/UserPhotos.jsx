@@ -16,7 +16,7 @@ const UserPhotos = ({
   }
   return (
     <Fragment>
-      <Header sub color="teal" content="All Photos" />
+      <Header sub color="blue" content="All Photos" />
 
       <Card.Group itemsPerRow={5}>
         <Card>

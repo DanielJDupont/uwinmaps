@@ -147,7 +147,7 @@ class EventForm extends Component {
       <Grid>
         <Grid.Column width={10}>
           <Segment>
-            <Header sub color="teal" content="Event details" />
+            <Header sub color="blue" content="Event details" />
             <Form
               onSubmit={this.props.handleSubmit(this.onFormSubmit)}
               autoComplete="off"
@@ -169,7 +169,7 @@ class EventForm extends Component {
                 rows={3}
                 placeholder="Tell us about your event"
               />
-              <Header sub color="teal" content="Event location details" />
+              <Header sub color="blue" content="Event location details" />
               <Field
                 name="city"
                 component={PlaceInput}

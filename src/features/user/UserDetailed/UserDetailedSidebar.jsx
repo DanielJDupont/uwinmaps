@@ -16,7 +16,7 @@ const UserDetailedSidebar = ({
           <Button
             as={Link}
             to="/settings"
-            color="teal"
+            color="blue"
             fluid
             basic
             content="Edit Profile"
@@ -26,7 +26,7 @@ const UserDetailedSidebar = ({
         {!isCurrentUser && !isFollowing && (
           <Button
             onClick={() => followUser(profile)}
-            color="teal"
+            color="blue"
             fluid
             basic
             content="Follow User"
@@ -36,7 +36,7 @@ const UserDetailedSidebar = ({
         {!isCurrentUser && isFollowing && (
           <Button
             onClick={() => unfollowUser(profile)}
-            color="teal"
+            color="blue"
             fluid
             basic
             content="Unfollow"

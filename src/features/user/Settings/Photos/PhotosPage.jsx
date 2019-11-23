@@ -101,12 +101,12 @@ const PhotosPage = ({
       <Grid>
         <Grid.Row />
         <Grid.Column width={4}>
-          <Header color="teal" sub content="Step 1 - Add Photo" />
+          <Header color="blue" sub content="Step 1 - Add Photo" />
           <DropzoneInput setFiles={setFiles} />
         </Grid.Column>
         <Grid.Column width={1} />
         <Grid.Column width={4}>
-          <Header sub color="teal" content="Step 2 - Resize image" />
+          <Header sub color="blue" content="Step 2 - Resize image" />
           {files.length > 0 && (
             <CropperInput
               imagePreview={files[0].preview}
@@ -117,7 +117,7 @@ const PhotosPage = ({
         </Grid.Column>
         <Grid.Column width={1} />
         <Grid.Column width={4}>
-          <Header sub color="teal" content="Step 3 - Preview & Upload" />
+          <Header sub color="blue" content="Step 3 - Preview & Upload" />
           {files.length > 0 && (
             <Fragment>
               <Image

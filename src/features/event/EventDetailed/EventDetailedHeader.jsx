@@ -78,7 +78,7 @@ const EventDetailedHeader = ({
               <Button
                 loading={loading}
                 onClick={() => goingToEvent(event)}
-                color="teal"
+                color="blue"
               >
                 JOIN THIS EVENT
               </Button>
@@ -87,7 +87,7 @@ const EventDetailedHeader = ({
               <Button
                 loading={loading}
                 onClick={() => openModal("UnauthModal")}
-                color="teal"
+                color="blue"
               >
                 JOIN THIS EVENT
               </Button>
