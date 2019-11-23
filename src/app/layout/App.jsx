@@ -13,6 +13,10 @@ import HomePage from "../../features/home/HomePage";
 import ModalManager from "../../features/modals/ModalManager";
 import ClassroomDashboard from "../../features/classroom/ClassroomDashboard/ClassroomDashboard";
 import BookstoreDashboard from "../../features/bookstore/BookstoreDashboard/BookstoreDashboard";
+import ClassroomForm from "../../features/classroom/ClassroomForm/ClassroomForm";
+import BookstoreForm from "../../features/bookstore/BookstoreForm/BookstoreForm";
+import BookstoreDetailedPage from "../../features/bookstore/BookstoreDetailed/BookstoreDetailedPage";
+import ClassroomDetailedPage from "../../features/classroom/ClassroomDetailed/ClassroomDetailedPage";
 
 class App extends Component {
   render() {
@@ -33,15 +37,31 @@ class App extends Component {
                     component={ClassroomDashboard}
                   />
                   <Route
+                    path="/classrooms/:id"
+                    component={ClassroomDetailedPage}
+                  />
+                  <Route
                     exact
                     path="/bookstore"
                     component={BookstoreDashboard}
+                  />
+                  <Route
+                    path="/bookstore/:id"
+                    component={BookstoreDetailedPage}
                   />
                   <Route exact path="/events" component={EventDashboard} />
                   <Route path="/events/:id" component={EventDetailedPage} />
                   <Route path="/people" component={PeopleDashboard} />
                   <Route path="/profile/:id" component={UserDetailedPage} />
                   <Route path="/settings" component={SettingsDashboard} />
+                  <Route
+                    path={["/createClassroom", "/manage/:id"]}
+                    component={ClassroomForm}
+                  />
+                  <Route
+                    path={["/createBookstore", "/manage/:id"]}
+                    component={BookstoreForm}
+                  />
                   <Route
                     path={["/createEvent", "/manage/:id"]}
                     component={EventForm}

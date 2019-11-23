@@ -1,4 +1,4 @@
-import { FETCH_EVENTS } from "./ClassroomConstants";
+import { FETCH_EVENTS } from "./BookstoreConstants";
 import { createNewEvent } from "../../app/common/util/helpers";
 import firebase from "../../app/config/firebase";
 import {
@@ -16,8 +16,8 @@ export const createEvent = event => {
     const photoURL = getState().firebase.profile.photoURL;
     const newEvent = createNewEvent(user, photoURL, event);
     try {
-      let createdEvent = await firestore.add("classrooms", newEvent);
-      await firestore.set(`classroom_attendee/${createdEvent.id}_${user.uid}`, {
+      let createdEvent = await firestore.add("bookstore", newEvent);
+      await firestore.set(`bookstore_attendee/${createdEvent.id}_${user.uid}`, {
         eventId: createdEvent.id,
         userUid: user.uid,
         eventDate: event.date,
@@ -36,7 +36,7 @@ export const updateEvent = event => {
     const firestore = firebase.firestore();
     try {
       dispatch(asyncActionStart());
-      let eventDocRef = firestore.collection("classrooms").doc(event.id);
+      let eventDocRef = firestore.collection("bookstore").doc(event.id);
       let dateEqual = getState().firestore.ordered.events[0].date.isEqual(
         event.date
       );
@@ -44,7 +44,7 @@ export const updateEvent = event => {
         let batch = firestore.batch();
         batch.update(eventDocRef, event);
 
-        let eventAttendeeRef = firestore.collection("classroom_attendee");
+        let eventAttendeeRef = firestore.collection("bookstore_attendee");
         let eventAttendeeQuery = await eventAttendeeRef.where(
           "eventId",
           "==",
@@ -54,7 +54,7 @@ export const updateEvent = event => {
 
         for (let i = 0; i < eventAttendeeQuerySnap.docs.length; i++) {
           let eventAttendeeDocRef = firestore
-            .collection("classroom_attendee")
+            .collection("bookstore_attendee")
             .doc(eventAttendeeQuerySnap.docs[i].id);
 
           batch.update(eventAttendeeDocRef, {
@@ -101,13 +101,13 @@ export const getEventsForDashboard = lastEvent => async (
 ) => {
   let today = new Date();
   const firestore = firebase.firestore();
-  const eventsRef = firestore.collection("classrooms");
+  const eventsRef = firestore.collection("bookstore");
   try {
     dispatch(asyncActionStart());
     let startAfter =
       lastEvent &&
       (await firestore
-        .collection("classrooms")
+        .collection("bookstore")
         .doc(lastEvent.id)
         .get());
     let query;

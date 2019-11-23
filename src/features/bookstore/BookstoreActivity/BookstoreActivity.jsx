@@ -1,6 +1,6 @@
 import React from "react";
 import { Header, Segment, Feed, Sticky } from "semantic-ui-react";
-import EventActivityItem from "./ClassroomActivityItem";
+import EventActivityItem from "./BookstoreActivityItem";
 
 const EventActivity = ({ activities, contextRef }) => {
   return (

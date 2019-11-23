@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import EventListItem from "./ClassroomListItem";
+import EventListItem from "./BookstoreListItem";
 import InfiniteScroll from "react-infinite-scroller";
 
 export default class EventList extends Component {

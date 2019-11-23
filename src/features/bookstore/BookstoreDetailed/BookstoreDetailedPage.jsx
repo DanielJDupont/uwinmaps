@@ -1,14 +1,19 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { Grid } from "semantic-ui-react";
-import BookstoreDetailedHeader from "./EventDetailedHeader";
-import { BookstoreDetailedInfo } from "./EventDetailedInfo";
-import { BookstoreDetailedChat } from "./EventDetailedChat";
-import { BookstoreDetailedSidebar } from "./EventDetailedSidebar";
-import { withFirestore } from "react-redux-firebase";
-import { toastr } from "react-redux-toastr";
-import Swal from "sweetalert2";
-import { objectToArray } from "../../../app/common/util/helpers";
+import { connect } from "react-redux";
+import BookstoreDetailedHeader from "./BookstoreDetailedHeader";
+import BookstoreDetailedInfo from "./BookstoreDetailedInfo";
+import BookstoreDetailedChat from "./BookstoreDetailedChat";
+import BookstoreDetailedSidebar from "./BookstoreDetailedSidebar";
+import { withFirestore, firebaseConnect, isEmpty } from "react-redux-firebase";
+import { compose } from "redux";
+import {
+  objectToArray,
+  createDataTree
+} from "../../../app/common/util/helpers";
+import { goingToEvent, cancelGoingToEvent } from "../../user/userActions";
+import { addEventComment } from "../BookstoreActions";
+import { openModal } from "../../modals/modalActions";
 
 const mapState = (state, ownProps) => {
   const eventId = ownProps.match.params.id;
@@ -19,50 +24,88 @@ const mapState = (state, ownProps) => {
     state.firestore.ordered.events &&
     state.firestore.ordered.events.length > 0
   ) {
-    event = state.firestore.ordered.events.filter(
-      event => event.id === eventId[0] || {}
-    );
+    event =
+      state.firestore.ordered.events.filter(event => event.id === eventId)[0] ||
+      {};
   }
 
   return {
-    event
+    event,
+    loading: state.async.loading,
+    auth: state.firebase.auth,
+    eventChat:
+      !isEmpty(state.firebase.data.event_chat) &&
+      objectToArray(state.firebase.data.event_chat[ownProps.match.params.id])
   };
 };
 
-class BookstoreDetailedPage extends Component {
+const actions = {
+  goingToEvent,
+  cancelGoingToEvent,
+  addEventComment,
+  openModal
+};
+
+class EventDetailedPage extends Component {
   async componentDidMount() {
-    const { firestore, match, history } = this.props;
-    let event = await firestore.get(`events/${match.params.id}`);
-    console.log(event);
-    if (!event.exists) {
-      history.push("/events");
-      Swal.fire({
-        type: "error",
-        title: "Sorry!",
-        text: "What you are looking for wasn't found!",
-        confirmButtonText: "Gotcha!"
-      });
-      toastr.error("Sorry!", "Event not found!");
-    }
+    const { firestore, match } = this.props;
+    await firestore.setListener(`events/${match.params.id}`);
+  }
+
+  async componentWillUnmount() {
+    const { firestore, match } = this.props;
+    await firestore.unsetListener(`events/${match.params.id}`);
   }
 
   render() {
-    const { event } = this.props;
+    const {
+      event,
+      auth,
+      goingToEvent,
+      cancelGoingToEvent,
+      addEventComment,
+      eventChat,
+      loading,
+      openModal
+    } = this.props;
     const attendees =
       event && event.attendees && objectToArray(event.attendees);
+    const isHost = event.hostUid === auth.uid;
+    const isGoing = attendees && attendees.some(a => a.id === auth.uid);
+    const chatTree = !isEmpty(eventChat) && createDataTree(eventChat);
+    const authenticated = auth.isLoaded && !auth.isEmpty;
     return (
       <Grid>
         <Grid.Column width={10}>
-          <BookstoreDetailedHeader event={event} />
+          <BookstoreDetailedHeader
+            event={event}
+            isHost={isHost}
+            isGoing={isGoing}
+            goingToEvent={goingToEvent}
+            cancelGoingToEvent={cancelGoingToEvent}
+            loading={loading}
+            authenticated={authenticated}
+            openModal={openModal}
+          />
           <BookstoreDetailedInfo event={event} />
-          <BookstoreDetailedChat />
+          {authenticated && (
+            <BookstoreDetailedChat
+              addEventComment={addEventComment}
+              eventId={event.id}
+              eventChat={chatTree}
+            />
+          )}
         </Grid.Column>
         <Grid.Column width={6}>
-          <BookstoreDetailedSidebar attendees={attendees} />
+          <BookstoreDetailedSidebar attendees={attendees} eventId={event.id} />
         </Grid.Column>
       </Grid>
     );
   }
 }
 
-export default withFirestore(connect(mapState)(BookstoreDetailedPage));
+export default compose(
+  withFirestore,
+  connect(mapState, actions),
+  firebaseConnect(props => [`event_chat/${props.match.params.id}`])
+)(EventDetailedPage);

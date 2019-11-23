@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Segment, Item, Icon, List, Button, Label } from "semantic-ui-react";
-import EventListAttendee from "./ClassroomListAttendee";
+import EventListAttendee from "./BookstoreListAttendee";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { objectToArray } from "../../../app/common/util/helpers";
@@ -15,7 +15,7 @@ class EventListItem extends Component {
             <Item>
               <Item.Image size="tiny" circular src={event.hostPhotoURL} />
               <Item.Content>
-                <Item.Header as={Link} to={`/classrooms/${event.id}`}>
+                <Item.Header as={Link} to={`/bookstore/${event.id}`}>
                   {event.title}
                 </Item.Header>
                 <Item.Description>
@@ -54,7 +54,7 @@ class EventListItem extends Component {
           <span>{event.description}</span>
           <Button
             as={Link}
-            to={`/classrooms/${event.id}`}
+            to={`/bookstore/${event.id}`}
             color="blue"
             floated="right"
             content="View"

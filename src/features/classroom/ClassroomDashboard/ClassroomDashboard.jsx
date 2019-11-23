@@ -1,12 +1,12 @@
 import React, { Component, createRef } from "react";
 import { Grid, Loader } from "semantic-ui-react";
 import { connect } from "react-redux";
-import ClassroomList from "../ClassroomList/ClassroomList";
+import EventList from "../ClassroomList/ClassroomList";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
-import ClassroomActivity from "../ClassroomActivity/ClassroomActivity";
+import EventActivity from "../ClassroomActivity/ClassroomActivity";
 import { firestoreConnect } from "react-redux-firebase";
 
-import { getClassroomsForDashboard } from "../ClassroomActions";
+import { getEventsForDashboard } from "../ClassroomActions";
 
 const query = [
   {
@@ -17,78 +17,72 @@ const query = [
 ];
 
 const mapState = state => ({
-  classrooms: state.classrooms,
+  events: state.events,
   loading: state.async.loading,
   activities: state.firestore.ordered.activity
 });
 
 const actions = {
-  getClassroomsForDashboard
+  getEventsForDashboard
 };
 
-class ClassroomDashboard extends Component {
+class EventDashboard extends Component {
   contextRef = createRef();
 
   state = {
-    moreClassrooms: false,
+    moreEvents: false,
     loadingInitial: true,
-    loadedClassrooms: []
+    loadedEvents: []
   };
 
   async componentDidMount() {
-    let next = await this.props.getClassroomsForDashboard();
+    let next = await this.props.getEventsForDashboard();
 
     if (next && next.docs && next.docs.length > 1) {
       this.setState({
-        moreClassrooms: true,
+        moreEvents: true,
         loadingInitial: false
       });
     }
   }
 
   componentDidUpdate = prevProps => {
-    if (this.props.Classrooms !== prevProps.Classrooms) {
+    if (this.props.events !== prevProps.events) {
       this.setState({
-        loadedClassrooms: [
-          ...this.state.loadedClassrooms,
-          ...this.props.Classrooms
-        ]
+        loadedEvents: [...this.state.loadedEvents, ...this.props.events]
       });
     }
   };
 
-  getNextClassrooms = async () => {
-    const { classrooms } = this.props;
-    let lastClassroom = classrooms && classrooms[classrooms.length - 1];
-    let next = await this.props.getClassroomsForDashboard(lastClassroom);
+  getNextEvents = async () => {
+    const { events } = this.props;
+    let lastEvent = events && events[events.length - 1];
+    let next = await this.props.getEventsForDashboard(lastEvent);
     if (next && next.docs && next.docs.length <= 1) {
       this.setState({
-        moreClassrooms: false
+        moreEvents: false
       });
     }
   };
 
   render() {
     const { loading, activities } = this.props;
-    const { moreClassrooms, loadedClassrooms } = this.state;
+    const { moreEvents, loadedEvents } = this.state;
     if (this.state.loadingInitial) return <LoadingComponent />;
     return (
       <Grid>
         <Grid.Column width={10}>
           <div ref={this.contextRef}>
-            <ClassroomList
+            <EventList
               loading={loading}
-              classrooms={loadedClassrooms}
-              moreClassrooms={moreClassrooms}
-              getNextClassrooms={this.getNextClassrooms}
+              events={loadedEvents}
+              moreEvents={moreEvents}
+              getNextEvents={this.getNextEvents}
             />
           </div>
         </Grid.Column>
         <Grid.Column width={6}>
-          <ClassroomActivity
-            activities={activities}
-            contextRef={this.contextRef}
-          />
+          <EventActivity activities={activities} contextRef={this.contextRef} />
         </Grid.Column>
         <Grid.Column width={10}>
           <Loader active={loading} />
@@ -101,4 +95,4 @@ class ClassroomDashboard extends Component {
 export default connect(
   mapState,
   actions
-)(firestoreConnect(query)(ClassroomDashboard));
+)(firestoreConnect(query)(EventDashboard));
