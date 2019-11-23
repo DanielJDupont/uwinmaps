@@ -18,7 +18,6 @@ import PlaceInput from "../../../app/common/form/PlaceInput";
 import SelectInput from "../../../app/common/form/SelectInput";
 import TextArea from "../../../app/common/form/TextArea";
 import TextInput from "../../../app/common/form/TextInput";
-import TestComponent from "../../testarea/TestComponent";
 import { toastr } from "react-redux-toastr";
 import Swal from "sweetalert2";
 import { withFirestore } from "react-redux-firebase";
@@ -209,7 +208,7 @@ class EventForm extends Component {
                 onClick={
                   initialValues.id
                     ? () => history.push(`/bookstore/${initialValues.id}`)
-                    : () => history.push("events")
+                    : () => history.push("bookstore")
                 }
                 type="button"
               >

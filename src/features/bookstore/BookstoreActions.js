@@ -86,7 +86,7 @@ export const cancelToggle = (cancelled, eventId) => async (
   try {
     toastr.confirm(message, {
       onOk: async () =>
-        await firestore.update(`events/${eventId}`, {
+        await firestore.update(`bookstore/${eventId}`, {
           cancelled: cancelled
         })
     });
@@ -162,7 +162,7 @@ export const addEventComment = (eventId, values, parentId) => async (
     date: Date.now()
   };
   try {
-    await firebase.push(`event_chat/${eventId}`, newComment);
+    await firebase.push(`bookstore_chat/${eventId}`, newComment);
   } catch (error) {
     console.log(error);
     toastr.error("Oops", "Problem adding comment");

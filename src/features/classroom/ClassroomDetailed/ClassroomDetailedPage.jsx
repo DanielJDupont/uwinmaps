@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Grid } from "semantic-ui-react";
 import { connect } from "react-redux";
-import BookstoreDetailedHeader from "./ClassroomDetailedHeader";
-import BookstoreDetailedInfo from "./ClassroomDetailedInfo";
-import BookstoreDetailedChat from "./ClassroomDetailedChat";
-import BookstoreDetailedSidebar from "./ClassroomDetailedSidebar";
+import ClassroomDetailedHeader from "./ClassroomDetailedHeader";
+import ClassroomDetailedInfo from "./ClassroomDetailedInfo";
+import ClassroomDetailedChat from "./ClassroomDetailedChat";
+import ClassroomDetailedSidebar from "./ClassroomDetailedSidebar";
 import { withFirestore, firebaseConnect, isEmpty } from "react-redux-firebase";
 import { compose } from "redux";
 import {
@@ -77,7 +77,7 @@ class EventDetailedPage extends Component {
     return (
       <Grid>
         <Grid.Column width={10}>
-          <BookstoreDetailedHeader
+          <ClassroomDetailedHeader
             event={event}
             isHost={isHost}
             isGoing={isGoing}
@@ -87,9 +87,9 @@ class EventDetailedPage extends Component {
             authenticated={authenticated}
             openModal={openModal}
           />
-          <BookstoreDetailedInfo event={event} />
+          <ClassroomDetailedInfo event={event} />
           {authenticated && (
-            <BookstoreDetailedChat
+            <ClassroomDetailedChat
               addEventComment={addEventComment}
               eventId={event.id}
               eventChat={chatTree}
@@ -97,7 +97,7 @@ class EventDetailedPage extends Component {
           )}
         </Grid.Column>
         <Grid.Column width={6}>
-          <BookstoreDetailedSidebar attendees={attendees} eventId={event.id} />
+          <ClassroomDetailedSidebar attendees={attendees} eventId={event.id} />
         </Grid.Column>
       </Grid>
     );
