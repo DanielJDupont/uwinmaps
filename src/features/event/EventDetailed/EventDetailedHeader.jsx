@@ -26,11 +26,13 @@ const EventDetailedHeader = ({
   authenticated,
   openModal
 }) => {
+  // /assets/categoryImages/${event.category}.jpg
+
   return (
     <Segment.Group>
       <Segment basic attached="top" style={{ padding: "0" }}>
         <Image
-          src={`/assets/categoryImages/${event.category}.jpg`}
+          src={`https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`}
           fluid
           style={eventImageStyle}
         />

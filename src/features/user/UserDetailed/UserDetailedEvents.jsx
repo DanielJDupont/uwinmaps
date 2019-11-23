@@ -1,13 +1,13 @@
 import React from "react";
-import { Card, Grid, Header, Image, Segment, Tab } from "semantic-ui-react";
+import { Segment, Header, Grid, Card, Image, Tab } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import format from "date-fns/format";
+import { format } from "date-fns";
 
 const panes = [
-  { menuItem: "All Events", pane: { key: "allEvents" } },
-  { menuItem: "Past Events", pane: { key: "pastEvents" } },
-  { menuItem: "Future Events", pane: { key: "futureEvents" } },
-  { menuItem: "Hosting", pane: { key: "hosting" } }
+  { menuItem: "All events", pane: { key: "allEvents" } },
+  { menuItem: "Past events", pane: { key: "pastEvents" } },
+  { menuItem: "Future events", pane: { key: "futureEvents" } },
+  { menuItem: "Hosting", pane: { key: "hosted" } }
 ];
 
 const UserDetailedEvents = ({ events, eventsLoading, changeTab }) => {
@@ -25,15 +25,17 @@ const UserDetailedEvents = ({ events, eventsLoading, changeTab }) => {
         <Card.Group itemsPerRow={5}>
           {events &&
             events.map(event => (
-              <Card as={Link} to={`/event/${event.id}`} key={event.id}>
+              <Card as={Link} to={`/events/${event.id}`} key={event.id}>
                 <Image src={`/assets/categoryImages/${event.category}.jpg`} />
                 <Card.Content>
                   <Card.Header textAlign="center">{event.title}</Card.Header>
                   <Card.Meta textAlign="center">
                     <div>
-                      {format(event.date && event.date.toDate(), "DD MMM YYYY")}
+                      {format(event.date && event.date.toDate(), "dd LLL yyyy")}
                     </div>
-                    <div>{format(event.date.toDate(), "h:mm A")}</div>
+                    <div>
+                      {format(event.date && event.date.toDate(), "h:mm a")}
+                    </div>
                   </Card.Meta>
                 </Card.Content>
               </Card>

@@ -1,41 +1,41 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Grid } from "semantic-ui-react";
-import ClassroomDetailedHeader from "./EventDetailedHeader";
-import { ClassroomDetailedInfo } from "./EventDetailedInfo";
-import { ClassroomDetailedChat } from "./EventDetailedChat";
-import { ClassroomDetailedSidebar } from "./EventDetailedSidebar";
+import ClassroomDetailedHeader from "./ClassroomDetailedHeader";
+import { ClassroomDetailedInfo } from "./ClassroomDetailedInfo";
+import { ClassroomDetailedChat } from "./ClassroomDetailedChat";
+import { ClassroomDetailedSidebar } from "./ClassroomDetailedSidebar";
 import { withFirestore } from "react-redux-firebase";
 import { toastr } from "react-redux-toastr";
 import Swal from "sweetalert2";
 import { objectToArray } from "../../../app/common/util/helpers";
 
 const mapState = (state, ownProps) => {
-  const eventId = ownProps.match.params.id;
+  const classroomId = ownProps.match.params.id;
 
-  let event = {};
+  let classroom = {};
 
   if (
-    state.firestore.ordered.events &&
-    state.firestore.ordered.events.length > 0
+    state.firestore.ordered.classrooms &&
+    state.firestore.ordered.classrooms.length > 0
   ) {
-    event = state.firestore.ordered.events.filter(
-      event => event.id === eventId[0] || {}
+    classroom = state.firestore.ordered.classrooms.filter(
+      classroom => classroom.id === classroomId[0] || {}
     );
   }
 
   return {
-    event
+    classroom
   };
 };
 
 class ClassroomDetailedPage extends Component {
   async componentDidMount() {
     const { firestore, match, history } = this.props;
-    let event = await firestore.get(`events/${match.params.id}`);
-    console.log(event);
-    if (!event.exists) {
-      history.push("/events");
+    let classroom = await firestore.get(`classrooms/${match.params.id}`);
+    console.log(classroom);
+    if (!classroom.exists) {
+      history.push("/classrooms");
       Swal.fire({
         type: "error",
         title: "Sorry!",
@@ -47,14 +47,14 @@ class ClassroomDetailedPage extends Component {
   }
 
   render() {
-    const { event } = this.props;
+    const { classroom } = this.props;
     const attendees =
-      event && event.attendees && objectToArray(event.attendees);
+      classroom && classroom.attendees && objectToArray(classroom.attendees);
     return (
       <Grid>
         <Grid.Column width={10}>
-          <ClassroomDetailedHeader event={event} />
-          <ClassroomDetailedInfo event={event} />
+          <ClassroomDetailedHeader classroom={classroom} />
+          <ClassroomDetailedInfo classroom={classroom} />
           <ClassroomDetailedChat />
         </Grid.Column>
         <Grid.Column width={6}>

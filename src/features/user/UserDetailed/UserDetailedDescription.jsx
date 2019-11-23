@@ -3,10 +3,6 @@ import { Grid, Header, Icon, Item, List, Segment } from "semantic-ui-react";
 import format from "date-fns/format";
 
 const UserDetailedDescription = ({ profile }) => {
-  let createdAt;
-  if (profile.createdAt) {
-    createdAt = format(profile.createdAt.toDate(), "D MMM YYYY");
-  }
   return (
     <Grid.Column width={12}>
       <Segment>
@@ -20,25 +16,28 @@ const UserDetailedDescription = ({ profile }) => {
               Originally from <strong>{profile.origin || "tbn"}</strong>
             </p>
             <p>
-              Member Since: <strong>{createdAt}</strong>
+              Member Since:{" "}
+              <strong>
+                {profile.createdAt &&
+                  format(profile.createdAt.toDate(), "dd LLL yyyy")}
+              </strong>
             </p>
             <p>{profile.description}</p>
           </Grid.Column>
           <Grid.Column width={6}>
             <Header icon="heart outline" content="Interests" />
-            {profile.interests ? (
-              <List>
-                {profile.interests &&
-                  profile.interests.map((interest, index) => (
-                    <Item key={index}>
-                      <Icon name="heart" />
-                      <Item.Content>{interest}</Item.Content>
-                    </Item>
-                  ))}
-              </List>
-            ) : (
-              <p>No interests</p>
-            )}
+            <List>
+              {profile.interests ? (
+                profile.interests.map((interest, index) => (
+                  <Item key={index}>
+                    <Icon name="heart" />
+                    <Item.Content>{interest}</Item.Content>
+                  </Item>
+                ))
+              ) : (
+                <p>No interests</p>
+              )}
+            </List>
           </Grid.Column>
         </Grid>
       </Segment>

@@ -1,17 +1,17 @@
 import React from "react";
-import PlacesAutoComplete from "react-places-autocomplete";
+import PlacesAutocomplete from "react-places-autocomplete";
 import { Form, Label, Segment, List } from "semantic-ui-react";
 
-function PlaceInput({
+const PlaceInput = ({
   input: { value, onChange, onBlur },
   width,
   options,
   placeholder,
   onSelect,
   meta: { touched, error }
-}) {
+}) => {
   return (
-    <PlacesAutoComplete
+    <PlacesAutocomplete
       value={value}
       onChange={onChange}
       searchOptions={options}
@@ -37,15 +37,15 @@ function PlaceInput({
                 width: "100%"
               }}
             >
-              {loading && <div>loading ...</div>}
+              {loading && <div>Loading...</div>}
               <List selection>
-                {suggestions.map(sug => (
-                  <List.Item {...getSuggestionItemProps(sug)}>
+                {suggestions.map(suggestion => (
+                  <List.Item {...getSuggestionItemProps(suggestion)}>
                     <List.Header>
-                      {sug.formattedSuggestion.mainText}
+                      {suggestion.formattedSuggestion.mainText}
                     </List.Header>
                     <List.Description>
-                      {sug.formattedSuggestion.secondaryText}
+                      {suggestion.formattedSuggestion.secondaryText}
                     </List.Description>
                   </List.Item>
                 ))}
@@ -54,8 +54,8 @@ function PlaceInput({
           )}
         </Form.Field>
       )}
-    </PlacesAutoComplete>
+    </PlacesAutocomplete>
   );
-}
+};
 
 export default PlaceInput;

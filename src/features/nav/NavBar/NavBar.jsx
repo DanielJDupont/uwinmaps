@@ -46,9 +46,6 @@ class NavBar extends Component {
 
           {authenticated && (
             <Fragment>
-              <Menu.Item as={NavLink} to="/people" name="People" />
-              <Menu.Item name="Resources" />
-              <Menu.Item name="Photos" />
               <Menu.Item>
                 <Button
                   className="ui teal button"

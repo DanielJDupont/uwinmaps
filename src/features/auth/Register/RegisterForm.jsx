@@ -4,7 +4,7 @@ import { Field, reduxForm } from "redux-form";
 
 import { combineValidators, isRequired } from "revalidate";
 
-import { TextInput } from "../../../app/common/form/TextInput";
+import TextInput from "../../../app/common/form/TextInput";
 import { connect } from "react-redux";
 import { registerUser } from "../AuthActions";
 

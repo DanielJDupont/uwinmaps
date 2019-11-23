@@ -9,7 +9,7 @@ const SignedInMenu = ({ signOut, profile, auth }) => {
         avatar
         spaced="right"
         src={
-          profile.avatarUrl ||
+          profile.photoURL ||
           "https://images.pexels.com/photos/948331/pexels-photo-948331.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
         }
       />

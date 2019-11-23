@@ -16,8 +16,8 @@ import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 import DateInput from "../../../app/common/form/DateInput";
 import PlaceInput from "../../../app/common/form/PlaceInput";
 import SelectInput from "../../../app/common/form/SelectInput";
-import { TextArea } from "../../../app/common/form/TextArea";
-import { TextInput } from "../../../app/common/form/TextInput";
+import TextArea from "../../../app/common/form/TextArea";
+import TextInput from "../../../app/common/form/TextInput";
 import TestComponent from "../../testarea/TestComponent";
 import { toastr } from "react-redux-toastr";
 import Swal from "sweetalert2";
@@ -63,6 +63,7 @@ const validate = combineValidators({
 });
 
 const category = [
+  { key: "tech", text: "Tech", value: "tech" },
   { key: "drinks", text: "Drinks", value: "drinks" },
   { key: "culture", text: "Culture", value: "culture" },
   { key: "film", text: "Film", value: "film" },

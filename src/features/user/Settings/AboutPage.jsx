@@ -10,7 +10,7 @@ import {
 import { Field, reduxForm } from "redux-form";
 import RadioInput from "../../../app/common/form/RadioInput";
 import SelectInput from "../../../app/common/form/SelectInput";
-import { TextInput } from "../../../app/common/form/TextInput";
+import TextInput from "../../../app/common/form/TextInput";
 import PlaceInput from "../../../app/common/form/PlaceInput";
 
 const interests = [

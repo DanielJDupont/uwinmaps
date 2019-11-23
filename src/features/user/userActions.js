@@ -9,7 +9,6 @@ import firebase from "../../app/config/firebase";
 import { FETCH_EVENTS } from "../event/EventConstants";
 import Swal from "sweetalert2";
 
-// Most important update method
 export const updateProfile = user => async (
   dispatch,
   getState,
@@ -19,13 +18,7 @@ export const updateProfile = user => async (
   const { isLoaded, isEmpty, ...updatedUser } = user;
   try {
     await firebase.updateProfile(updatedUser);
-    toastr.success("Success", "Profile updated");
-    Swal.fire({
-      type: "success",
-      title: "Success!",
-      text: "Action Performed",
-      confirmButtonText: "Great!"
-    });
+    toastr.success("Success", "Your profile has been updated");
   } catch (error) {
     console.log(error);
   }
@@ -46,11 +39,11 @@ export const uploadProfileImage = (file, fileName) => async (
   };
   try {
     dispatch(asyncActionStart());
-    // upload the file to fb storage
+    // upload the file to firebase storage
     let uploadedFile = await firebase.uploadFile(path, file, null, options);
-    // get url of image
+    // get url of the image
     let downloadURL = await uploadedFile.uploadTaskSnapshot.ref.getDownloadURL();
-    // get the userdoc from firestore
+    // get userdoc
     let userDoc = await firestore.get(`users/${user.uid}`);
     // check if user has photo, if not update profile
     if (!userDoc.data().photoURL) {
@@ -61,7 +54,7 @@ export const uploadProfileImage = (file, fileName) => async (
         photoURL: downloadURL
       });
     }
-    // add the new photo to photos collection
+    // add the image to firestore
     await firestore.add(
       {
         collection: "users",
@@ -77,7 +70,6 @@ export const uploadProfileImage = (file, fileName) => async (
   } catch (error) {
     console.log(error);
     dispatch(asyncActionError());
-    throw new Error("Problem uploading photo");
   }
 };
 
@@ -103,22 +95,22 @@ export const deletePhoto = photo => async (
 };
 
 export const setMainPhoto = photo => async (dispatch, getState) => {
-  dispatch(asyncActionStart());
   const firestore = firebase.firestore();
   const user = firebase.auth().currentUser;
-  const today = new Date(Date.now());
+  const today = new Date();
   let userDocRef = firestore.collection("users").doc(user.uid);
   let eventAttendeeRef = firestore.collection("event_attendee");
   try {
+    dispatch(asyncActionStart());
     let batch = firestore.batch();
 
-    await batch.update(userDocRef, {
+    batch.update(userDocRef, {
       photoURL: photo.url
     });
 
     let eventQuery = await eventAttendeeRef
       .where("userUid", "==", user.uid)
-      .where("eventDate", ">", today);
+      .where("eventDate", ">=", today);
 
     let eventQuerySnap = await eventQuery.get();
 
@@ -155,7 +147,7 @@ export const goingToEvent = event => async (dispatch, getState) => {
   const profile = getState().firebase.profile;
   const attendee = {
     going: true,
-    joinDate: Date.now(),
+    joinDate: new Date(),
     photoURL: profile.photoURL || "/assets/user.png",
     displayName: profile.displayName,
     host: false
@@ -171,29 +163,25 @@ export const goingToEvent = event => async (dispatch, getState) => {
       await transaction.update(eventDocRef, {
         [`attendees.${user.uid}`]: attendee
       });
-      await transaction.set(eventAttendeeDocRef, {
-        eventId: event.id,
-        userUid: user.uid,
-        eventDate: event.date,
-        host: false
-      });
+      await transaction.set(eventAttendeeDocRef, {});
     });
     dispatch(asyncActionFinish());
     toastr.success("Success", "You have signed up to the event");
   } catch (error) {
     console.log(error);
-    dispatch(asyncActionError());
-    toastr.error("Oops", "Problem signing up to event");
+    dispatch(asyncActionFinish());
+    toastr.error("Oops", "Problem signing up to the event");
   }
 };
 
 export const cancelGoingToEvent = event => async (
   dispatch,
   getState,
-  { getFirestore }
+  { getFirestore, getFirebase }
 ) => {
   const firestore = getFirestore();
-  const user = firestore.auth().currentUser;
+  const firebase = getFirebase();
+  const user = firebase.auth().currentUser;
   try {
     await firestore.update(`events/${event.id}`, {
       [`attendees.${user.uid}`]: firestore.FieldValue.delete()
@@ -202,7 +190,7 @@ export const cancelGoingToEvent = event => async (
     toastr.success("Success", "You have removed yourself from the event");
   } catch (error) {
     console.log(error);
-    toastr.error("Oops", "something went wrong");
+    toastr.error("Oops", "Something went wrong");
   }
 };
 
@@ -212,7 +200,7 @@ export const getUserEvents = (userUid, activeTab) => async (
 ) => {
   dispatch(asyncActionStart());
   const firestore = firebase.firestore();
-  const today = new Date(Date.now());
+  const today = new Date();
   let eventsRef = firestore.collection("event_attendee");
   let query;
   switch (activeTab) {
@@ -238,7 +226,9 @@ export const getUserEvents = (userUid, activeTab) => async (
       query = eventsRef
         .where("userUid", "==", userUid)
         .orderBy("eventDate", "desc");
+      break;
   }
+
   try {
     let querySnap = await query.get();
     let events = [];
@@ -257,49 +247,5 @@ export const getUserEvents = (userUid, activeTab) => async (
   } catch (error) {
     console.log(error);
     dispatch(asyncActionError());
-  }
-};
-
-export const followUser = userToFollow => async (
-  dispatch,
-  getState,
-  { getFirestore }
-) => {
-  const firestore = getFirestore();
-  const user = firestore.auth().currentUser;
-  const following = {
-    photoURL: userToFollow.photoURL || "/assets/user.png",
-    city: userToFollow.city || "unknown city",
-    displayName: userToFollow.displayName
-  };
-  try {
-    await firestore.set(
-      {
-        collection: "users",
-        doc: user.uid,
-        subcollections: [{ collection: "following", doc: userToFollow.id }]
-      },
-      following
-    );
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const unfollowUser = userToUnfollow => async (
-  dispatch,
-  getState,
-  { getFirestore }
-) => {
-  const firestore = getFirestore();
-  const user = firestore.auth().currentUser;
-  try {
-    await firestore.delete({
-      collection: "users",
-      doc: user.uid,
-      subcollections: [{ collection: "following", doc: userToUnfollow.id }]
-    });
-  } catch (error) {
-    console.log(error);
   }
 };

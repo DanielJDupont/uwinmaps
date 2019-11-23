@@ -15,7 +15,7 @@ import {
   isRequired,
   composeValidators
 } from "revalidate";
-import { TextInput } from "../../../app/common/form/TextInput";
+import TextInput from "../../../app/common/form/TextInput";
 
 const validate = combineValidators({
   newPassword1: isRequired({ message: "Please enter a password" }),
