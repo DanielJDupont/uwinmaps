@@ -1,26 +1,26 @@
-import React from "react";
+import React from 'react';
 import {
   Button,
   Divider,
   Form,
   Header,
   Segment,
-  TextArea
-} from "semantic-ui-react";
-import { Field, reduxForm } from "redux-form";
-import RadioInput from "../../../app/common/form/RadioInput";
-import SelectInput from "../../../app/common/form/SelectInput";
-import TextInput from "../../../app/common/form/TextInput";
-import PlaceInput from "../../../app/common/form/PlaceInput";
+  TextArea,
+} from 'semantic-ui-react';
+import { Field, reduxForm } from 'redux-form';
+import RadioInput from '../../../app/common/form/RadioInput';
+import SelectInput from '../../../app/common/form/SelectInput';
+import TextInput from '../../../app/common/form/TextInput';
+import PlaceInput from '../../../app/common/form/PlaceInput';
 
 const interests = [
-  { key: "tech", text: "Tech", value: "tech" },
-  { key: "drinks", text: "Drinks", value: "drinks" },
-  { key: "culture", text: "Culture", value: "culture" },
-  { key: "film", text: "Film", value: "film" },
-  { key: "food", text: "Food", value: "food" },
-  { key: "music", text: "Music", value: "music" },
-  { key: "travel", text: "Travel", value: "travel" }
+  { key: 'tech', text: 'Tech', value: 'tech' },
+  { key: 'business', text: 'Business', value: 'business' },
+  { key: 'culture', text: 'Culture', value: 'culture' },
+  { key: 'film', text: 'Film', value: 'film' },
+  { key: 'food', text: 'Food', value: 'food' },
+  { key: 'music', text: 'Music', value: 'music' },
+  { key: 'travel', text: 'Travel', value: 'travel' },
 ];
 
 const AboutPage = ({ pristine, submitting, handleSubmit, updateProfile }) => {
@@ -35,22 +35,29 @@ const AboutPage = ({ pristine, submitting, handleSubmit, updateProfile }) => {
             name="status"
             component={RadioInput}
             type="radio"
-            value="single"
-            label="Single"
+            value="bachelor"
+            label="Bachelor"
           />
           <Field
             name="status"
             component={RadioInput}
             type="radio"
-            value="relationship"
-            label="Relationship"
+            value="masters"
+            label="Masters"
           />
           <Field
             name="status"
             component={RadioInput}
             type="radio"
-            value="married"
-            label="Married"
+            value="phd"
+            label="PhD"
+          />
+          <Field
+            name="status"
+            component={RadioInput}
+            type="radio"
+            value="faculty"
+            label="Faculty"
           />
           <Field
             name="status"
@@ -62,7 +69,12 @@ const AboutPage = ({ pristine, submitting, handleSubmit, updateProfile }) => {
         </Form.Group>
         <Divider />
         <label>Tell us about yourself:</label>
-        <Field name="about" component={TextArea} placeholder="About Me" />
+        <Field
+          name="about"
+          type="text"
+          component={TextArea}
+          placeholder="About Me"
+        />
         <Field
           name="interests"
           component={SelectInput}
@@ -81,7 +93,7 @@ const AboutPage = ({ pristine, submitting, handleSubmit, updateProfile }) => {
         <Field
           width={8}
           name="origin"
-          options={{ types: ["(regions)"] }}
+          options={{ types: ['(regions)'] }}
           component={PlaceInput}
           placeholder="Country of Origin"
         />
@@ -98,7 +110,7 @@ const AboutPage = ({ pristine, submitting, handleSubmit, updateProfile }) => {
 };
 
 export default reduxForm({
-  form: "userProfile",
+  form: 'userProfile',
   enableReinitialize: true,
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
 })(AboutPage);

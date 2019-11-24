@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { Segment, Form, Header, Divider, Button } from "semantic-ui-react";
-import { Field, reduxForm } from "redux-form";
-import DateInput from "../../../app/common/form/DateInput";
-import PlaceInput from "../../../app/common/form/PlaceInput";
-import TextInput from "../../../app/common/form/TextInput";
-import RadioInput from "../../../app/common/form/RadioInput";
-import { addYears } from "date-fns";
+import React, { Component } from 'react';
+import { Segment, Form, Header, Divider, Button } from 'semantic-ui-react';
+import { Field, reduxForm } from 'redux-form';
+import DateInput from '../../../app/common/form/DateInput';
+import PlaceInput from '../../../app/common/form/PlaceInput';
+import TextInput from '../../../app/common/form/TextInput';
+import RadioInput from '../../../app/common/form/RadioInput';
+import { addYears } from 'date-fns';
 
 class BasicPage extends Component {
   render() {
@@ -38,6 +38,30 @@ class BasicPage extends Component {
               component={RadioInput}
             />
           </Form.Group>
+          <Form.Group inline>
+            <label>Account Status: </label>
+            <Field
+              name="status"
+              type="radio"
+              value="student"
+              label="Student"
+              component={RadioInput}
+            />
+            <Field
+              name="status"
+              type="radio"
+              value="bookstoreEmployee"
+              label="Bookstore Employee"
+              component={RadioInput}
+            />
+            <Field
+              name="status"
+              type="radio"
+              value="admin"
+              label="Admin"
+              component={RadioInput}
+            />
+          </Form.Group>
           <Field
             width={8}
             name="dateOfBirth"
@@ -52,7 +76,7 @@ class BasicPage extends Component {
           <Field
             name="city"
             placeholder="Home Town"
-            options={{ types: ["(cities)"] }}
+            options={{ types: ['(cities)'] }}
             label="Female"
             component={PlaceInput}
             width={8}
@@ -71,7 +95,7 @@ class BasicPage extends Component {
 }
 
 export default reduxForm({
-  form: "userProfile",
+  form: 'userProfile',
   enableReinitialize: true,
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
 })(BasicPage);
