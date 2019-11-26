@@ -7,6 +7,7 @@ import {
   asyncActionError
 } from "../async/asyncActions";
 import { toastr } from "react-redux-toastr";
+import Swal from 'sweetalert2';
 
 export const createEvent = event => {
   return async (dispatch, getState, { getFirestore, getFirebase }) => {
@@ -23,11 +24,29 @@ export const createEvent = event => {
         eventDate: event.date,
         host: true
       });
-      toastr.success("Success!", "Event has been created");
+      toastr.success("Success!", "Your event has been made");
+      Swal.fire({
+        type: "success",
+        title: "Success!",
+        showConfirmButton: false,
+        text: "Event has been created",
+        confirmButtonText: "Great!",
+        timer: 1500
+      });
       return createdEvent;
-    } catch (error) {
-      toastr.error("Oops", "Something went wrong");
     }
+    catch (error) {
+      toastr.error("Oops", "There was a problem with creating an event");
+      Swal.fire({
+        type: "error",
+        title: "Error!",
+        showConfirmButton: false,
+        text: "Something went wrong",
+        confirmButtonText: "Oops!",
+        timer: 1500
+      });
+    }
+
   };
 };
 
@@ -66,10 +85,27 @@ export const updateEvent = event => {
         await eventDocRef.update(event);
       }
       dispatch(asyncActionFinish());
-      toastr.success("Success!", "Event has been updated");
+      toastr.success("Success!", "Your changes have been made");
+      Swal.fire({
+        type: "success",
+        title: "Success!",
+        showConfirmButton: false,
+        text: "Event has been updated",
+        confirmButtonText: "Great!",
+        timer: 1500
+      });
+
     } catch (error) {
       dispatch(asyncActionError());
-      toastr.error("Oops", "Something went wrong");
+      toastr.error("Oops", "There seems to be a problem");
+      Swal.fire({
+        type: "error",
+        title: "Error!",
+        showConfirmButton: false,
+        text: "Something went wrong",
+        confirmButtonText: "Error!",
+        timer: 1500
+      });
     }
   };
 };
@@ -114,14 +150,14 @@ export const getEventsForDashboard = lastEvent => async (
 
     lastEvent
       ? (query = eventsRef
-          .where("date", ">=", today)
-          .orderBy("date")
-          .startAfter(startAfter)
-          .limit(2))
+        .where("date", ">=", today)
+        .orderBy("date")
+        .startAfter(startAfter)
+        .limit(2))
       : (query = eventsRef
-          .where("date", ">=", today)
-          .orderBy("date")
-          .limit(2));
+        .where("date", ">=", today)
+        .orderBy("date")
+        .limit(2));
 
     let querySnap = await query.get();
 

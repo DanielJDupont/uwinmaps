@@ -89,8 +89,10 @@ export const updatePassword = creds => async (
     Swal.fire({
       type: "success",
       title: "Success!",
+      showConfirmButton: false,
       text: "Your password has been updated!",
-      confirmButtonText: "Great!"
+      confirmButtonText: "Great!",
+      timer: 1500
     });
   } catch (error) {
     throw new SubmissionError({

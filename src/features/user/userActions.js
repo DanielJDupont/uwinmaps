@@ -9,6 +9,7 @@ import firebase from "../../app/config/firebase";
 import { FETCH_EVENTS } from "../event/EventConstants";
 import Swal from "sweetalert2";
 
+
 export const updateProfile = user => async (
   dispatch,
   getState,
@@ -18,7 +19,15 @@ export const updateProfile = user => async (
   const { isLoaded, isEmpty, ...updatedUser } = user;
   try {
     await firebase.updateProfile(updatedUser);
-    toastr.success("Success", "Your profile has been updated");
+    toastr.success("Success", "You have made changes to your profile");
+    Swal.fire({
+      type: "success",
+      title: "Success!",
+      showConfirmButton: false,
+      text: "Your profile has been updated!",
+      confirmButtonText: "Great!",
+      timer: 1500
+    });
   } catch (error) {
     console.log(error);
   }
@@ -166,11 +175,27 @@ export const goingToEvent = event => async (dispatch, getState) => {
       await transaction.set(eventAttendeeDocRef, {});
     });
     dispatch(asyncActionFinish());
-    toastr.success("Success", "You have signed up to the event");
+    toastr.success("Success", "You are attending the event");
+    Swal.fire({
+      type: "success",
+      title: "Success!",
+      showConfirmButton: false,
+      text: "You have signed up to the event!",
+      confirmButtonText: "Great!",
+      timer: 1500
+    });
   } catch (error) {
     console.log(error);
     dispatch(asyncActionFinish());
     toastr.error("Oops", "Problem signing up to the event");
+    Swal.fire({
+      type: "error",
+      title: "Error!",
+      showConfirmButton: false,
+      text: "There was a problem signing you up",
+      confirmButtonText: "Error!",
+      timer: 1500
+    });
   }
 };
 
@@ -187,10 +212,25 @@ export const cancelGoingToEvent = event => async (
       [`attendees.${user.uid}`]: firestore.FieldValue.delete()
     });
     await firestore.delete(`event_attendee/${event.id}_${user.uid}`);
-    toastr.success("Success", "You have removed yourself from the event");
+    toastr.warning("Okay", "You are no longer attending");
+    Swal.fire({
+      type: "warning",
+      title: "Okay!",
+      showConfirmButton: true,
+      text: "You have removed yourself from the event!",
+      confirmButtonText: "I understand"
+    });
   } catch (error) {
     console.log(error);
-    toastr.error("Oops", "Something went wrong");
+    toastr.error("Oops", "There seems to be a problem");
+    Swal.fire({
+      type: "error",
+      title: "Error!",
+      showConfirmButton: false,
+      text: "Something went wrong",
+      confirmButtonText: "Oops!",
+      timer: 1500
+    });
   }
 };
 
