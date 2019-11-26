@@ -41,21 +41,21 @@ class BasicPage extends Component {
           <Form.Group inline>
             <label>Account Status: </label>
             <Field
-              name="status"
+              name="accountStatus"
               type="radio"
               value="student"
               label="Student"
               component={RadioInput}
             />
             <Field
-              name="status"
+              name="accountStatus"
               type="radio"
               value="bookstoreEmployee"
               label="Bookstore Employee"
               component={RadioInput}
             />
             <Field
-              name="status"
+              name="accountStatus"
               type="radio"
               value="admin"
               label="Admin"

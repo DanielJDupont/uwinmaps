@@ -29,38 +29,38 @@ const AboutPage = ({ pristine, submitting, handleSubmit, updateProfile }) => {
       <Header dividing size="large" content="About Me" />
       <p>Complete your profile to get the most out of UWinMaps.</p>
       <Form onSubmit={handleSubmit(updateProfile)}>
-        <label>Tell us your status: </label>
+        <label>Tell us your education: </label>
         <Form.Group inline>
           <Field
-            name="status"
+            name="educationStatus"
             component={RadioInput}
             type="radio"
             value="bachelor"
             label="Bachelor"
           />
           <Field
-            name="status"
+            name="educationStatus"
             component={RadioInput}
             type="radio"
             value="masters"
             label="Masters"
           />
           <Field
-            name="status"
+            name="educationStatus"
             component={RadioInput}
             type="radio"
             value="phd"
             label="PhD"
           />
           <Field
-            name="status"
+            name="educationStatus"
             component={RadioInput}
             type="radio"
             value="faculty"
             label="Faculty"
           />
           <Field
-            name="status"
+            name="educationStatus"
             component={RadioInput}
             type="radio"
             value="other"
