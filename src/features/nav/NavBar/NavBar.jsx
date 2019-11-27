@@ -35,7 +35,7 @@ class NavBar extends Component {
     const { auth, profile } = this.props;
     const authenticated = auth.isLoaded && !auth.isEmpty;
     return (
-      <Menu inverted fixed="top">
+      <Menu inverted fixed="top" className="large">
         <Container>
           <Menu.Item as={NavLink} exact to="/" header>
             <i className="material-icons">map</i> UWinMaps
@@ -50,33 +50,11 @@ class NavBar extends Component {
                 <Button
                   className="ui teal button"
                   as={Link}
-                  to="/createClassroom"
-                  floated="right"
-                  positive
-                  inverted
-                  content="Create Classroom"
-                />
-              </Menu.Item>
-              <Menu.Item>
-                <Button
-                  className="ui teal button"
-                  as={Link}
                   to="/createEvent"
                   floated="right"
                   positive
                   inverted
                   content="Create Event"
-                />
-              </Menu.Item>
-              <Menu.Item>
-                <Button
-                  className="ui teal button"
-                  as={Link}
-                  to="/createBookstore"
-                  floated="right"
-                  positive
-                  inverted
-                  content="Create Bookstore Item"
                 />
               </Menu.Item>
             </Fragment>
