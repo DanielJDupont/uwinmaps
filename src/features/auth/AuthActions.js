@@ -70,6 +70,25 @@ export const socialLogin = selectedProvider => async (
         createdAt: firestore.FieldValue.serverTimestamp()
       });
     }
+    if (user.additionalUserInfo.isNewUser) {
+      Swal.fire({
+        type: "success",
+        title: "Registered Successfully!",
+        showConfirmButton: false,
+        text: "Welcome to UWinMaps!",
+        confirmButtonText: "Great!",
+        timer: 2000
+      });
+    } else {
+      Swal.fire({
+        type: "success",
+        title: "Login Success!",
+        showConfirmButton: false,
+        text: "Welcome Back to UWinMaps!",
+        confirmButtonText: "Great!",
+        timer: 2000
+      });
+    }
   } catch (error) {
     console.log(error);
   }
