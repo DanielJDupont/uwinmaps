@@ -8,7 +8,7 @@ const UserDetailedDescription = ({ profile }) => {
       <Segment>
         <Grid columns={2}>
           <Grid.Column width={10}>
-            <Header icon="smile" content="About Display Name" />
+            <Header className="blue" icon="star" content="About Me" />
             <p>
               I am a: <strong>{profile.occupation || "tbn"}</strong>
             </p>
@@ -25,18 +25,18 @@ const UserDetailedDescription = ({ profile }) => {
             <p>{profile.description}</p>
           </Grid.Column>
           <Grid.Column width={6}>
-            <Header icon="heart outline" content="Interests" />
+            <Header className="red" icon="heart outline" content="Interests" />
             <List>
               {profile.interests ? (
                 profile.interests.map((interest, index) => (
                   <Item key={index}>
-                    <Icon name="heart" />
+                    <Icon className="red" name="heart" />
                     <Item.Content>{interest}</Item.Content>
                   </Item>
                 ))
               ) : (
-                <p>No interests</p>
-              )}
+                  <p>No interests</p>
+                )}
             </List>
           </Grid.Column>
         </Grid>
