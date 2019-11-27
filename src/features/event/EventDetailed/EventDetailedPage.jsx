@@ -15,6 +15,8 @@ import { goingToEvent, cancelGoingToEvent } from "../../user/userActions";
 import { addEventComment } from "../EventActions";
 import { openModal } from "../../modals/modalActions";
 
+import PhotosPageEvents from "./Photos/PhotosPageEvents";
+
 const mapState = (state, ownProps) => {
   const eventId = ownProps.match.params.id;
 
@@ -88,6 +90,7 @@ class EventDetailedPage extends Component {
             openModal={openModal}
           />
           <EventDetailedInfo event={event} />
+          <PhotosPageEvents></PhotosPageEvents>
           {authenticated && (
             <EventDetailedChat
               addEventComment={addEventComment}

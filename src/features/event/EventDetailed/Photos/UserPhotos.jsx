@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react';
-import { Header, Card, Image, Button } from 'semantic-ui-react';
+import React, { Fragment } from "react";
+import { Header, Card, Image, Button } from "semantic-ui-react";
 
 const UserPhotos = ({
   photos,
   profile,
   deletePhoto,
   setMainPhoto,
-  loading,
+  loading
 }) => {
   let filteredPhotos;
   if (photos) {
@@ -18,10 +18,10 @@ const UserPhotos = ({
     <Fragment>
       <Header sub color="blue" content="All Photos" />
 
-      <Card.Group itemsPerRow={5}>
+      <Card.Group itemsPerRow={1}>
         <Card>
-          <Image src={profile.photoURL || '/assets/user.png'} />
-          <Button color="blue">Main Photo</Button>
+          <Image src={profile.photoURL || "/assets/user.png"} />
+          <Button color="blue">Main Entrance</Button>
         </Card>
         {photos &&
           filteredPhotos.map(photo => (
