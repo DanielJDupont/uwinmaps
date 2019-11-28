@@ -78,7 +78,8 @@ class EventDetailedPage extends Component {
     const authenticated = auth.isLoaded && !auth.isEmpty;
     return (
       <Grid>
-        <Grid.Column width={10}>
+        <Grid.Column width={16}>
+          <EventDetailedSidebar attendees={attendees} eventId={event.id} />
           <EventDetailedHeader
             event={event}
             isHost={isHost}
@@ -98,9 +99,6 @@ class EventDetailedPage extends Component {
               eventChat={chatTree}
             />
           )}
-        </Grid.Column>
-        <Grid.Column width={6}>
-          <EventDetailedSidebar attendees={attendees} eventId={event.id} />
         </Grid.Column>
       </Grid>
     );

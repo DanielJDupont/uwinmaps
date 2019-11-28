@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Menu, Container, Button } from "semantic-ui-react";
+import { Menu, Container, Button, Icon } from "semantic-ui-react";
 import "./NavBar.css";
 import { NavLink, Link, withRouter } from "react-router-dom";
 import SignedOutMenu from "../Menus/SignedOutMenu";
@@ -38,10 +38,23 @@ class NavBar extends Component {
       <Menu inverted fixed="top" className="large">
         <Container>
           <Menu.Item as={NavLink} exact to="/" header>
-            <i className="material-icons">map</i> UWinMaps
+            <Icon name="yellow large map outline" inverted />
+            UWinMaps
           </Menu.Item>
-          <Menu.Item as={NavLink} exact to="/classrooms" name="Classrooms" />
-          <Menu.Item as={NavLink} exact to="/bookstore" name="Bookstore" />
+          <Menu.Item
+            // as={NavLink}
+            disabled
+            exact
+            // to="/classrooms"
+            name="Classrooms"
+          />
+          <Menu.Item
+            // as={NavLink}
+            disabled
+            exact
+            // to="/bookstore"
+            name="Bookstore"
+          />
           <Menu.Item as={NavLink} exact to="/events" name="Events" />
 
           {authenticated && (

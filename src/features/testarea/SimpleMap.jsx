@@ -3,7 +3,7 @@ import GoogleMapReact from "google-map-react";
 import { Icon } from "semantic-ui-react";
 
 const AnyReactComponent = ({ text }) => (
-  <Icon name="marker" size="big" color="red"></Icon>
+  <Icon name="map marker alternate" size="big" color="red"></Icon>
 );
 
 class SimpleMap extends Component {

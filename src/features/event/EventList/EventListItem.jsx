@@ -39,7 +39,7 @@ class EventListItem extends Component {
             <Icon className="orange" name="clock" />
             {format(event.date.toDate(), "EEEE do LLL")} at{" "}
             {format(event.date.toDate(), "h:mm a")} |
-            <Icon className="red" name="marker" /> {event.venue}
+            <Icon className="red" name="map marker alternate" /> {event.venue}
           </span>
         </Segment>
         <Segment secondary>

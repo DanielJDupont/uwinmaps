@@ -35,7 +35,7 @@ const EventDetailedInfo = ({ event }) => {
       <Segment attached>
         <Grid verticalAlign="middle">
           <Grid.Column width={1}>
-            <Icon name="marker" size="large" color="red" />
+            <Icon name="map marker alternate" size="large" color="red" />
           </Grid.Column>
           <Grid.Column width={11}>
             <span>{event.venue}</span>
