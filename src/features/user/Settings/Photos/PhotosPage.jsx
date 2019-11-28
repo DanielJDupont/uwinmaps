@@ -129,7 +129,7 @@ const PhotosPage = ({
                   onClick={handleUploadImage}
                   loading={loading}
                   style={{ width: "100px" }}
-                  positive
+                  color="blue"
                   icon="check"
                 />
                 <Button

@@ -55,7 +55,7 @@ class TestComponent extends Component {
           name="increment"
           loading={buttonName === "increment" && loading}
           onClick={e => incrementAsync(e.target.name)}
-          positive
+          color="blue"
           content="Test Increment"
         />
         <Button

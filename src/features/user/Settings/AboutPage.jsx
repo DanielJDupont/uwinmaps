@@ -1,26 +1,26 @@
-import React from 'react';
+import React from "react";
 import {
   Button,
   Divider,
   Form,
   Header,
   Segment,
-  TextArea,
-} from 'semantic-ui-react';
-import { Field, reduxForm } from 'redux-form';
-import RadioInput from '../../../app/common/form/RadioInput';
-import SelectInput from '../../../app/common/form/SelectInput';
-import TextInput from '../../../app/common/form/TextInput';
-import PlaceInput from '../../../app/common/form/PlaceInput';
+  TextArea
+} from "semantic-ui-react";
+import { Field, reduxForm } from "redux-form";
+import RadioInput from "../../../app/common/form/RadioInput";
+import SelectInput from "../../../app/common/form/SelectInput";
+import TextInput from "../../../app/common/form/TextInput";
+import PlaceInput from "../../../app/common/form/PlaceInput";
 
 const interests = [
-  { key: 'tech', text: 'Tech', value: 'tech' },
-  { key: 'business', text: 'Business', value: 'business' },
-  { key: 'culture', text: 'Culture', value: 'culture' },
-  { key: 'film', text: 'Film', value: 'film' },
-  { key: 'food', text: 'Food', value: 'food' },
-  { key: 'music', text: 'Music', value: 'music' },
-  { key: 'travel', text: 'Travel', value: 'travel' },
+  { key: "tech", text: "Tech", value: "tech" },
+  { key: "business", text: "Business", value: "business" },
+  { key: "culture", text: "Culture", value: "culture" },
+  { key: "film", text: "Film", value: "film" },
+  { key: "food", text: "Food", value: "food" },
+  { key: "music", text: "Music", value: "music" },
+  { key: "travel", text: "Travel", value: "travel" }
 ];
 
 const AboutPage = ({ pristine, submitting, handleSubmit, updateProfile }) => {
@@ -93,7 +93,7 @@ const AboutPage = ({ pristine, submitting, handleSubmit, updateProfile }) => {
         <Field
           width={8}
           name="origin"
-          options={{ types: ['(regions)'] }}
+          options={{ types: ["(regions)"] }}
           component={PlaceInput}
           placeholder="Country of Origin"
         />
@@ -101,7 +101,7 @@ const AboutPage = ({ pristine, submitting, handleSubmit, updateProfile }) => {
         <Button
           disabled={pristine || submitting}
           size="large"
-          positive
+          color="blue"
           content="Update Profile"
         />
       </Form>
@@ -110,7 +110,7 @@ const AboutPage = ({ pristine, submitting, handleSubmit, updateProfile }) => {
 };
 
 export default reduxForm({
-  form: 'userProfile',
+  form: "userProfile",
   enableReinitialize: true,
-  destroyOnUnmount: false,
+  destroyOnUnmount: false
 })(AboutPage);

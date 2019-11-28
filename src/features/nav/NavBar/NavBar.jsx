@@ -65,7 +65,7 @@ class NavBar extends Component {
                   as={Link}
                   to="/createEvent"
                   floated="right"
-                  positive
+                  color="blue"
                   inverted
                   content="Create Event"
                 />

@@ -99,7 +99,7 @@ const EventDetailedHeader = ({
           <Button
             as={Link}
             to={`/manage/${event.id}`}
-            color="orange"
+            color="blue"
             floated="right"
           >
             Manage Event

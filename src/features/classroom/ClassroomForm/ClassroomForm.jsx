@@ -198,7 +198,7 @@ class EventForm extends Component {
               <Button
                 disabled={invalid || submitting || pristine}
                 loading={loading}
-                positive
+                color="blue"
                 type="submit"
               >
                 Submit
