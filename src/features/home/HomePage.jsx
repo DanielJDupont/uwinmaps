@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Segment,
   Container,
@@ -11,11 +11,20 @@ import {
 } from "semantic-ui-react";
 import Confetti from "react-confetti";
 import "./HomePage.css";
+import useWindowDimensions from "./WindowHook";
 
 const HomePage = ({ history }) => {
+  const { height, width } = useWindowDimensions();
+  console.log(height);
   return (
     <Segment inverted textAlign="center" vertical className="masthead">
-      <Confetti numberOfPieces={20} colors={["yellow"]} opacity={0.15} />
+      <Confetti
+        numberOfPieces={20}
+        colors={["yellow"]}
+        opacity={0.15}
+        confettiSource={{ x: 0, y: height, w: 3000, h: 0 }}
+        gravity={-0.15}
+      />
       <Container text>
         <Header as="h1" inverted>
           <Icon name="yellow large map outline" inverted />
