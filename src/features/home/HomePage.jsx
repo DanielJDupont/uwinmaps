@@ -15,7 +15,7 @@ import useWindowDimensions from "./WindowHook";
 
 const HomePage = ({ history }) => {
   const { height, width } = useWindowDimensions();
-  console.log(height);
+
   return (
     <Segment inverted textAlign="center" vertical className="masthead">
       <Confetti
@@ -23,7 +23,8 @@ const HomePage = ({ history }) => {
         colors={["yellow"]}
         opacity={0.15}
         confettiSource={{ x: 0, y: height, w: 3000, h: 0 }}
-        gravity={-0.15}
+        gravity={-0.1}
+        wind={0}
       />
       <Container text>
         <Header as="h1" inverted>
