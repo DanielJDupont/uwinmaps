@@ -4,13 +4,14 @@ import EventListAttendee from "./EventListAttendee";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { objectToArray } from "../../../app/common/util/helpers";
+import "./EventListItem.css";
 
 class EventListItem extends Component {
   render() {
     const { event } = this.props;
     return (
       <Segment.Group>
-        <Segment>
+        <Segment id="segment">
           <Item.Group>
             <Item>
               <Item.Image size="tiny" circular src={event.hostPhotoURL} />
