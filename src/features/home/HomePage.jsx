@@ -19,10 +19,10 @@ const HomePage = ({ history }) => {
   return (
     <Segment inverted textAlign="center" vertical className="masthead">
       <Confetti
-        numberOfPieces={20}
+        numberOfPieces={10}
         colors={["yellow"]}
         opacity={0.15}
-        confettiSource={{ x: 0, y: height, w: 3000, h: 0 }}
+        confettiSource={{ x: 0, y: height, w: width, h: 0 }}
         gravity={-0.1}
         wind={0}
       />
