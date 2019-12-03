@@ -10,6 +10,7 @@ import {
   Divider
 } from "semantic-ui-react";
 import Confetti from "react-confetti";
+import "./HomePage.css";
 
 const HomePage = ({ history }) => {
   return (

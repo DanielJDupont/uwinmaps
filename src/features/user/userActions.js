@@ -9,7 +9,6 @@ import firebase from "../../app/config/firebase";
 import { FETCH_EVENTS } from "../event/EventConstants";
 import Swal from "sweetalert2";
 
-
 export const updateProfile = user => async (
   dispatch,
   getState,
@@ -33,6 +32,7 @@ export const updateProfile = user => async (
   }
 };
 
+// For image upload on user. Need to do this for photos only.
 export const uploadProfileImage = (file, fileName) => async (
   dispatch,
   getState,
@@ -81,6 +81,57 @@ export const uploadProfileImage = (file, fileName) => async (
     dispatch(asyncActionError());
   }
 };
+
+// For image upload on user. Need to do this for photos only.
+export const uploadEventsImage = (file, fileName) => async (
+  dispatch,
+  getState,
+  { getFirebase, getFirestore }
+) => {
+  const imageName = cuid();
+  const firebase = getFirebase();
+  const firestore = getFirestore();
+  const user = firebase.auth().currentUser;
+  const path = `${user.uid}/event_images`;
+  const options = {
+    name: imageName
+  };
+  try {
+    dispatch(asyncActionStart());
+    // upload the file to firebase storage
+    let uploadedFile = await firebase.uploadFile(path, file, null, options);
+    // get url of the image
+    let downloadURL = await uploadedFile.uploadTaskSnapshot.ref.getDownloadURL();
+    // get userdoc
+    let userDoc = await firestore.get(`events/${user.uid}`);
+    // check if user has photo, if not update profile
+    if (!userDoc.data().photoURL) {
+      await firebase.updateProfile({
+        photoURL: downloadURL
+      });
+      await user.updateProfile({
+        photoURL: downloadURL
+      });
+    }
+    // add the image to firestore
+    await firestore.add(
+      {
+        collection: "events",
+        doc: user.uid,
+        subcollections: [{ collection: "photos" }]
+      },
+      {
+        name: imageName,
+        url: downloadURL
+      }
+    );
+    dispatch(asyncActionFinish());
+  } catch (error) {
+    console.log(error);
+    dispatch(asyncActionError());
+  }
+};
+// Event photos
 
 export const deletePhoto = photo => async (
   dispatch,

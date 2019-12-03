@@ -13,7 +13,7 @@ import {
 import DropzoneInput from "./DropzoneInput";
 import CropperInput from "./CropperInput";
 import {
-  uploadProfileImage,
+  uploadEventsImage,
   deletePhoto,
   setMainPhoto
 } from "../../../user/userActions";
@@ -32,7 +32,7 @@ const query = ({ auth }) => {
 };
 
 const actions = {
-  uploadProfileImage,
+  uploadEventsImage,
   deletePhoto,
   setMainPhoto
 };
@@ -45,7 +45,7 @@ const mapState = state => ({
 });
 
 const PhotosPage = ({
-  uploadProfileImage,
+  uploadEventsImage,
   photos,
   profile,
   deletePhoto,
@@ -67,7 +67,7 @@ const PhotosPage = ({
 
   const handleUploadImage = async () => {
     try {
-      await uploadProfileImage(image, files[0].name);
+      await uploadEventsImage(image, files[0].name);
       handleCancelCrop();
       toastr.success("Success", "Photo has been uploaded");
     } catch (error) {

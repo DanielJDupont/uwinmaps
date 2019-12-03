@@ -26,11 +26,29 @@ body {
   display: flex;
   align-items: center;
   background-image: linear-gradient(
-    135deg,
-    rgb(24, 42, 115) 0%,
-    rgb(33, 138, 174) 69%,
-    rgb(32, 167, 172) 89%
-  ) !important;
+      135deg,
+      rgba(24, 42, 115, 0.089) 0%,
+      rgba(33, 139, 174, 0.123) 69%,
+      rgba(32, 167, 172, 0.096) 89%
+    ),
+    linear-gradient(-122deg, rgba(233, 5, 5, 0) 82%, rgba(235, 35, 0, 0.08) 33%),
+    linear-gradient(33deg, rgba(240, 13, 13, 0) 80%, rgba(255, 7, 7, 0.08) 33%),
+    linear-gradient(
+      55deg,
+      rgba(218, 11, 11, 0) 80%,
+      rgba(255, 27, 27, 0.11) 33%
+    ),
+    linear-gradient(
+      -45deg,
+      rgba(255, 24, 24, 0) 79%,
+      rgba(253, 18, 18, 0.08) 33%
+    ),
+    linear-gradient(
+      100deg,
+      rgba(255, 24, 24, 0) 79%,
+      rgba(253, 18, 18, 0.08) 33%
+    ),
+    radial-gradient(circle, rgb(104, 16, 16) 0%, rgb(60, 2, 2) 100%) !important;
   height: 100vh;
 }
 
@@ -72,11 +90,29 @@ body {
 
 .ui.fixed.menu {
   background-image: linear-gradient(
-    135deg,
-    rgb(24, 42, 115) 0%,
-    rgb(33, 138, 174) 69%,
-    rgb(32, 167, 172) 89%
-  ) !important;
+      135deg,
+      rgba(24, 42, 115, 0.089) 0%,
+      rgba(33, 139, 174, 0.123) 69%,
+      rgba(32, 167, 172, 0.096) 89%
+    ),
+    linear-gradient(-122deg, rgba(233, 5, 5, 0) 82%, rgba(235, 35, 0, 0.08) 33%),
+    linear-gradient(33deg, rgba(240, 13, 13, 0) 80%, rgba(255, 7, 7, 0.08) 33%),
+    linear-gradient(
+      55deg,
+      rgba(218, 11, 11, 0) 80%,
+      rgba(255, 27, 27, 0.11) 33%
+    ),
+    linear-gradient(
+      -45deg,
+      rgba(255, 24, 24, 0) 79%,
+      rgba(253, 18, 18, 0.08) 33%
+    ),
+    linear-gradient(
+      100deg,
+      rgba(255, 24, 24, 0) 79%,
+      rgba(253, 18, 18, 0.08) 33%
+    ),
+    radial-gradient(circle, rgb(104, 16, 16) 0%, rgb(60, 2, 2) 100%) !important;
 }
 
 .ui.main.container,
