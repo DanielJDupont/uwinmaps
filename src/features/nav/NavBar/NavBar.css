@@ -65,32 +65,36 @@ body {
   align-items: center;
   background-image: linear-gradient(
       135deg,
-      rgba(24, 42, 115, 0.089) 0%,
-      rgba(33, 139, 174, 0.123) 69%,
-      rgba(32, 167, 172, 0.096) 89%
+      rgba(39, 99, 148, 0.089) 0%,
+      rgba(36, 54, 136, 0.123) 69%,
+      rgba(45, 32, 161, 0.096) 89%
     ),
     linear-gradient(
       -122deg,
-      rgba(28, 5, 233, 0) 82%,
-      rgba(55, 0, 235, 0.08) 33%
+      rgba(51, 112, 161, 0) 82%,
+      rgba(32, 23, 109, 0.08) 33%
     ),
-    linear-gradient(33deg, rgba(17, 13, 240, 0) 80%, rgba(23, 7, 255, 0.08) 33%),
+    linear-gradient(
+      33deg,
+      rgba(55, 119, 172, 0) 80%,
+      rgba(49, 124, 185, 0.08) 33%
+    ),
     linear-gradient(
       55deg,
-      rgba(49, 11, 218, 0) 80%,
-      rgba(27, 69, 255, 0.11) 33%
+      rgba(63, 155, 229, 0) 80%,
+      rgba(63, 155, 229, 0.11) 33%
     ),
     linear-gradient(
       -45deg,
-      rgba(39, 24, 255, 0) 79%,
-      rgba(18, 34, 253, 0.08) 33%
+      rgba(63, 155, 2295, 0) 79%,
+      rgba(35, 91, 136, 0.08) 33%
     ),
     linear-gradient(
       100deg,
-      rgba(39, 24, 255, 0) 79%,
-      rgba(34, 18, 253, 0.08) 33%
+      rgba(63, 155, 229, 0) 79%,
+      rgba(45, 62, 163, 0.08) 33%
     ),
-    radial-gradient(circle, rgb(16, 17, 104) 0%, rgb(2, 11, 60) 100%) !important;
+    radial-gradient(circle, rgb(51, 129, 192) 0%, rgb(55, 133, 197) 100%) !important;
   height: 100vh;
 }
 
@@ -131,34 +135,40 @@ body {
 }
 
 .ui.fixed.menu {
+  display: flex;
+  align-items: center;
   background-image: linear-gradient(
       135deg,
-      rgba(24, 42, 115, 0.089) 0%,
-      rgba(33, 139, 174, 0.123) 69%,
-      rgba(32, 167, 172, 0.096) 89%
+      rgba(39, 99, 148, 0.089) 0%,
+      rgba(36, 54, 136, 0.123) 69%,
+      rgba(45, 32, 161, 0.096) 89%
     ),
     linear-gradient(
       -122deg,
-      rgba(5, 92, 233, 0) 82%,
-      rgba(0, 71, 235, 0.08) 33%
+      rgba(51, 112, 161, 0) 82%,
+      rgba(32, 23, 109, 0.08) 33%
     ),
-    linear-gradient(33deg, rgba(13, 28, 240, 0) 80%, rgba(11, 7, 255, 0.08) 33%),
+    linear-gradient(
+      33deg,
+      rgba(55, 119, 172, 0) 80%,
+      rgba(49, 124, 185, 0.08) 33%
+    ),
     linear-gradient(
       55deg,
-      rgba(11, 25, 218, 0) 80%,
-      rgba(27, 88, 255, 0.11) 33%
+      rgba(63, 155, 229, 0) 80%,
+      rgba(63, 155, 229, 0.11) 33%
     ),
     linear-gradient(
       -45deg,
-      rgba(24, 39, 255, 0) 79%,
-      rgba(22, 18, 253, 0.08) 33%
+      rgba(63, 155, 2295, 0) 79%,
+      rgba(35, 91, 136, 0.08) 33%
     ),
     linear-gradient(
       100deg,
-      rgba(24, 59, 255, 0) 79%,
-      rgba(18, 53, 253, 0.08) 33%
+      rgba(63, 155, 229, 0) 79%,
+      rgba(45, 62, 163, 0.08) 33%
     ),
-    radial-gradient(circle, rgb(17, 16, 104) 0%, rgb(2, 6, 60) 100%) !important;
+    radial-gradient(circle, rgb(51, 129, 192) 0%, rgb(55, 133, 197) 100%) !important;
 }
 
 .ui.main.container,
