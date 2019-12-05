@@ -11,19 +11,20 @@ import {
 } from "semantic-ui-react";
 import Confetti from "react-confetti";
 import "./HomePage.css";
-import useWindowDimensions from "./WindowHook";
+// import useWindowDimensions from "./WindowHook";
 
 const HomePage = ({ history }) => {
-  const { height, width } = useWindowDimensions();
+  // const { height, width } = useWindowDimensions();
 
+  // confettiSource={{ x: 0, y: height, w: width, h: 0 }}
+  // gravity={-0.1}
   return (
     <Segment inverted textAlign="center" vertical className="masthead">
       <Confetti
-        numberOfPieces={10}
+        numberOfPieces={20}
         colors={["yellow"]}
         opacity={0.15}
-        confettiSource={{ x: 0, y: height, w: width, h: 0 }}
-        gravity={-0.1}
+        gravity={0.1}
         wind={0}
       />
       <Container text>

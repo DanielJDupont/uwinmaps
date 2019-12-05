@@ -19,21 +19,21 @@ const SignedInMenu = ({ signOut, profile, auth }) => {
             as={Link}
             to="/createEvent"
             text="Create Event"
-            icon="plus"
+            icon="plus blue"
           />
           <Dropdown.Item
             as={Link}
             to={`/profile/${auth.uid}`}
             text="My Profile"
-            icon="user"
+            icon="user blue"
           />
           <Dropdown.Item
             as={Link}
             to="/settings"
             text="Settings"
-            icon="settings"
+            icon="settings blue"
           />
-          <Dropdown.Item onClick={signOut} text="Sign Out" icon="power" />
+          <Dropdown.Item onClick={signOut} text="Sign Out" icon="power black" />
         </Dropdown.Menu>
       </Dropdown>
     </Menu.Item>

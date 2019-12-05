@@ -25,10 +25,11 @@ class EventListItem extends Component {
                 </Item.Description>
                 {event.cancelled && (
                   <Label
-                    style={{ top: "-40px" }}
+                    style={{ top: "-30px" }}
                     ribbon="right"
-                    color="red"
-                    content="This event has been cancelled"
+                    color="blue"
+                    size="large"
+                    content="This Event Was Cancelled"
                   />
                 )}
               </Item.Content>

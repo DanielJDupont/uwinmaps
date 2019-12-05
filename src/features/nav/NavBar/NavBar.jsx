@@ -41,6 +41,8 @@ class NavBar extends Component {
             <Icon name="yellow large map outline" inverted />
             UWinMaps
           </Menu.Item>
+
+          {/* 
           <Menu.Item
             // as={NavLink}
             disabled
@@ -55,9 +57,11 @@ class NavBar extends Component {
             // to="/bookstore"
             name="Bookstore"
           />
+          */}
+
           <Menu.Item as={NavLink} exact to="/events" name="Events" />
 
-          {authenticated && (
+          {/*authenticated && (
             <Fragment>
               <Menu.Item>
                 <Button
@@ -71,7 +75,7 @@ class NavBar extends Component {
                 />
               </Menu.Item>
             </Fragment>
-          )}
+          )*/}
           {authenticated ? (
             <SignedInMenu
               auth={auth}

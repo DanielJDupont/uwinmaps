@@ -1,19 +1,11 @@
 .App-banner {
   background-image: linear-gradient(
       -122deg,
-      rgba(233, 5, 5, 0) 82%,
-      rgba(235, 35, 0, 0.08) 33%
+      rgba(5, 20, 233, 0) 82%,
+      rgba(0, 0, 235, 0.08) 33%
     ),
-    linear-gradient(33deg, rgba(240, 13, 13, 0) 80%, rgba(255, 7, 7, 0.08) 33%),
-    linear-gradient(
-      55deg,
-      rgba(218, 11, 11, 0) 80%,
-      rgba(255, 27, 27, 0.11) 33%
-    ),
-    linear-gradient(
-      -45deg,
-      rgba(255, 24, 24, 0) 79%,
-      rgba(253, 18, 18, 0.08) 33%
-    ),
-    radial-gradient(circle, rgb(104, 16, 16) 0%, rgb(60, 2, 2) 100%);
+    linear-gradient(33deg, rgba(28, 13, 240, 0) 80%, rgba(32, 7, 255, 0.08) 33%),
+    linear-gradient(55deg, rgba(11, 14, 218, 0) 80%, rgba(0, 0, 235, 0.11) 33%),
+    linear-gradient(-45deg, rgba(47, 24, 255, 0) 79%, rgba(0, 0, 235, 0.08) 33%),
+    radial-gradient(circle, rgb(0, 0, 235) 0%, rgb(2, 3, 60) 100%);
 }
