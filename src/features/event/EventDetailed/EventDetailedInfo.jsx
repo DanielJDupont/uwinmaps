@@ -10,7 +10,7 @@ const EventDetailedInfo = ({ event }) => {
       <Segment attached="top">
         <Grid>
           <Grid.Column width={1}>
-            <Icon size="large" color="orange" name="info" />
+            <Icon size="large" color="blue" name="info" />
           </Grid.Column>
           <Grid.Column width={15}>
             <p>{event.description}</p>
