@@ -6,7 +6,7 @@ const SettingsNav = () => {
   return (
     <Fragment>
       <Menu vertical>
-        <Header icon="user" attached inverted color="grey" content="Profile" />
+        <Header icon="user blue" attached color="black" content="Profile" />
         <Menu.Item as={NavLink} to="/settings/basic">
           Basics
         </Menu.Item>
@@ -18,13 +18,7 @@ const SettingsNav = () => {
         </Menu.Item>
       </Menu>
       <Menu vertical>
-        <Header
-          icon="settings"
-          attached
-          inverted
-          color="grey"
-          content="Account"
-        />
+        <Header icon="settings blue" attached color="black" content="Account" />
         <Menu.Item as={NavLink} to="/settings/account">
           My Account
         </Menu.Item>
