@@ -94,7 +94,7 @@ body {
       rgba(63, 155, 229, 0) 79%,
       rgba(45, 62, 163, 0.08) 33%
     ),
-    radial-gradient(circle, rgb(51, 129, 192) 0%, rgb(55, 133, 197) 100%) !important;
+    radial-gradient(circle, rgb(39, 94, 139) 0%, rgb(55, 133, 197) 100%) !important;
   height: 100vh;
 }
 
@@ -168,7 +168,7 @@ body {
       rgba(63, 155, 229, 0) 79%,
       rgba(45, 62, 163, 0.08) 33%
     ),
-    radial-gradient(circle, rgb(51, 129, 192) 0%, rgb(55, 133, 197) 100%) !important;
+    radial-gradient(circle, rgb(39, 94, 139) 0%, rgb(55, 133, 197) 100%) !important;
 }
 
 .ui.main.container,
