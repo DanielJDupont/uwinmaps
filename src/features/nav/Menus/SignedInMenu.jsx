@@ -33,7 +33,7 @@ const SignedInMenu = ({ signOut, profile, auth }) => {
             text="Settings"
             icon="settings blue"
           />
-          <Dropdown.Item onClick={signOut} text="Sign Out" icon="power black" />
+          <Dropdown.Item onClick={signOut} text="Sign Out" icon="power grey" />
         </Dropdown.Menu>
       </Dropdown>
     </Menu.Item>
