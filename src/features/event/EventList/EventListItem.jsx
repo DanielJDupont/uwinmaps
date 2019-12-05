@@ -1,14 +1,23 @@
 import React, { Component } from "react";
 import { Segment, Item, Icon, List, Button, Label } from "semantic-ui-react";
 import EventListAttendee from "./EventListAttendee";
-import { Link } from "react-router-dom";
+import { NavLink, Link, withRouter } from "react-router-dom";
 import { format } from "date-fns";
 import { objectToArray } from "../../../app/common/util/helpers";
 import "./EventListItem.css";
+import { withFirebase } from "react-redux-firebase";
+import { connect } from "react-redux";
+
+const mapState = state => ({
+  auth: state.firebase.auth,
+  profile: state.firebase.profile
+});
 
 class EventListItem extends Component {
   render() {
     const { event } = this.props;
+    const { auth, profile } = this.props;
+    const authenticated = auth.isLoaded && !auth.isEmpty;
     return (
       <Segment.Group>
         <Segment id="segment">
@@ -54,17 +63,32 @@ class EventListItem extends Component {
         </Segment>
         <Segment clearing>
           <span>{event.description}</span>
-          <Button
-            as={Link}
-            to={`/events/${event.id}`}
-            color="blue"
-            floated="right"
-            content="View"
-          />
+          {/* Logged in, show functional View button */}
+          {authenticated && (
+            <Button
+              as={Link}
+              to={`/events/${event.id}`}
+              color="blue"
+              floated="right"
+              content="View"
+            />
+          )}
+          {/* Not logged in, show nonfunctional Login to View button */}
+          {!authenticated && (
+            <Button
+              // as={Link}
+              // to={`/events/${event.id}`}
+              color="blue"
+              floated="right"
+              content="Login to View"
+              disabled
+            />
+          )}
         </Segment>
       </Segment.Group>
     );
   }
 }
 
-export default EventListItem;
+// export default EventListItem;
+export default withRouter(withFirebase(connect(mapState)(EventListItem)));
