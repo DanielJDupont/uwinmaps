@@ -1,12 +1,13 @@
 import React from "react";
-import { Grid, Header, Image, Segment } from "semantic-ui-react";
+import { Grid, Header, Image, Segment, Divider } from "semantic-ui-react";
 import LazyLoad from "react-lazyload";
 
 const UserDetailedPhotos = ({ photos }) => {
   return (
     <Grid.Column width={12}>
       <Segment attached>
-        <Header className="orange" icon="image" content="Photos" />
+        <Header className="blue" icon="image" content="My Photos" />
+        <Divider />
         <Image.Group size="small">
           {photos &&
             photos.map(photo => (

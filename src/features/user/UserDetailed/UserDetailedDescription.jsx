@@ -1,5 +1,13 @@
 import React from "react";
-import { Grid, Header, Icon, Item, List, Segment } from "semantic-ui-react";
+import {
+  Grid,
+  Header,
+  Icon,
+  Item,
+  List,
+  Segment,
+  Divider
+} from "semantic-ui-react";
 import format from "date-fns/format";
 
 const UserDetailedDescription = ({ profile }) => {
@@ -9,6 +17,7 @@ const UserDetailedDescription = ({ profile }) => {
         <Grid columns={2}>
           <Grid.Column width={10}>
             <Header className="blue" icon="star" content="About Me" />
+            <Divider />
             <p>
               I am a: <strong>{profile.occupation || "tbn"}</strong>
             </p>
@@ -26,6 +35,7 @@ const UserDetailedDescription = ({ profile }) => {
           </Grid.Column>
           <Grid.Column width={6}>
             <Header className="red" icon="heart outline" content="Interests" />
+            <Divider />
             <List>
               {profile.interests ? (
                 profile.interests.map((interest, index) => (
@@ -35,8 +45,8 @@ const UserDetailedDescription = ({ profile }) => {
                   </Item>
                 ))
               ) : (
-                  <p>No interests</p>
-                )}
+                <p>No interests</p>
+              )}
             </List>
           </Grid.Column>
         </Grid>

@@ -1,5 +1,13 @@
 import React from "react";
-import { Segment, Header, Grid, Card, Image, Tab } from "semantic-ui-react";
+import {
+  Segment,
+  Header,
+  Grid,
+  Card,
+  Image,
+  Tab,
+  Divider
+} from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 
@@ -14,7 +22,8 @@ const UserDetailedEvents = ({ events, eventsLoading, changeTab }) => {
   return (
     <Grid.Column width={12}>
       <Segment attached loading={eventsLoading}>
-        <Header className="green" icon="calendar" content="Events" />
+        <Header className="blue" icon="calendar" content="My Events" />
+        <Divider />
         <Tab
           onTabChange={(e, data) => changeTab(e, data)}
           panes={panes}
