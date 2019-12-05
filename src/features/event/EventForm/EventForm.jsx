@@ -144,7 +144,7 @@ class EventForm extends Component {
     } = this.props;
     return (
       <Grid>
-        <Grid.Column width={10}>
+        <Grid.Column width={16}>
           <Segment>
             <Header sub color="blue" content="Event details" />
             <Form
