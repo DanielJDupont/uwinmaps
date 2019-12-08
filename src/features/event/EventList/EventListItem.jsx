@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import { Segment, Item, Icon, List, Button, Label } from "semantic-ui-react";
-import EventListAttendee from "./EventListAttendee";
-import { NavLink, Link, withRouter } from "react-router-dom";
-import { format } from "date-fns";
-import { objectToArray } from "../../../app/common/util/helpers";
-import "./EventListItem.css";
-import { withFirebase } from "react-redux-firebase";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { Segment, Item, Icon, List, Button, Label } from 'semantic-ui-react';
+import EventListAttendee from './EventListAttendee';
+import { NavLink, Link, withRouter } from 'react-router-dom';
+import { format } from 'date-fns';
+import { objectToArray } from '../../../app/common/util/helpers';
+import './EventListItem.css';
+import { withFirebase } from 'react-redux-firebase';
+import { connect } from 'react-redux';
 
 const mapState = state => ({
   auth: state.firebase.auth,
-  profile: state.firebase.profile
+  profile: state.firebase.profile,
 });
 
 class EventListItem extends Component {
@@ -29,14 +29,14 @@ class EventListItem extends Component {
                   {event.title}
                 </Item.Header>
                 <Item.Description>
-                  Hosted by{" "}
-                  <Link to={`/profile/${event.hostUid}`}>{event.hostedBy}</Link>{" "}
+                  Hosted by{' '}
+                  <Link to={`/profile/${event.hostUid}`}>{event.hostedBy}</Link>{' '}
                 </Item.Description>
                 {event.cancelled && (
                   <Label
-                    style={{ top: "-30px" }}
+                    style={{ top: '-30px' }}
                     ribbon="right"
-                    color="blue"
+                    color="red"
                     size="large"
                     content="This Event Was Cancelled"
                   />
@@ -48,8 +48,8 @@ class EventListItem extends Component {
         <Segment>
           <span>
             <Icon className="blue" name="clock" />
-            {format(event.date.toDate(), "EEEE do LLL")} at{" "}
-            {format(event.date.toDate(), "h:mm a")} {" | "}
+            {format(event.date.toDate(), 'EEEE do LLL')} at{' '}
+            {format(event.date.toDate(), 'h:mm a')} {' | '}
             <Icon className="red" name="map marker alternate" /> {event.venue}
           </span>
         </Segment>
